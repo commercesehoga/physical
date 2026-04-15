@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thunderstudy CBT — physical education</title>
+
+<script>
+const SUBJECT_ID  = "pe";
+const CHAPTER_ID  = "pe6";
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
+
+:root {
+    --primary-color: #c62828;
+    --primary-light: #ef5350;
+    --primary-dark: #8e0000;
+    --secondary-color: #ef9a9a;
+    --accent: #ffcdd2;
+    --correct-color: #c62828;
+    --incorrect-color: #b71c1c;
+    --neutral-color: #8d6e63;
+    --light-bg: #fff5f5;
+    --white: #ffffff;
+    --dark-text: #2a0f0f;
+    --light-text: #5c2a2a;
+    --card-bg: #ffffff;
+
+    --dark-bg: #1a0d0d;
+    --dark-card: #2a1515;
+    --dark-primary: #ef5350;
+    --dark-secondary: #ef9a9a;
+    --dark-text-color: #ffdede;
+    --dark-border: #4a2a2a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    display: flex;
+}
+
+/* ── DARK MODE ── */
+body.dark-mode { background-color: var(--dark-bg); color: var(--dark-text-color); }
+body.dark-mode p, body.dark-mode span:not(.icon),
+body.dark-mode h1,body.dark-mode h2,body.dark-mode h3,
+body.dark-mode h4,body.dark-mode h5,body.dark-mode h6,
+body.dark-mode label, body.dark-mode li { color: var(--dark-text-color) !important; }
+body.dark-mode a:not(.fancy-btn):not(.footer-btn):not(.button2):not(.join-btn) {
+    color: var(--dark-primary) !important; text-decoration: underline;
+}
+body.dark-mode .fancy-btn,body.dark-mode .footer-btn,body.dark-mode .join-btn,
+body.dark-mode .submit-fancy-btn,body.dark-mode .more-btn,body.dark-mode .back-btn,body.dark-mode .report-btn { color: white !important; }
+body.dark-mode #prev-btn { color: var(--dark-primary) !important; border-color: var(--dark-primary) !important; }
+body.dark-mode #next-btn { color: #000 !important; background-color: var(--dark-primary) !important; }
+body.dark-mode #mark-btn { color: var(--dark-secondary) !important; border-color: var(--dark-secondary) !important; }
+body.dark-mode #mark-btn.marked { background-color: var(--dark-secondary) !important; color: #000 !important; }
+body.dark-mode #start-test-btn { color: white !important; }
+body.dark-mode .close-btn { color: var(--dark-text-color) !important; }
+body.dark-mode .stat-card h3 { color: var(--dark-text-color) !important; }
+body.dark-mode .question-number { color: var(--dark-primary) !important; }
+body.dark-mode .question-text { color: var(--dark-text-color) !important; }
+body.dark-mode .progress-text span { color: #ef9a9a !important; }
+body.dark-mode .palette-title span { color: var(--dark-text-color) !important; }
+body.dark-mode .test-info strong { color: #fff !important; }
+body.dark-mode .test-info span { color: #ef9a9a !important; }
+body.dark-mode .sidebar {
+    background-color: var(--dark-card);
+    box-shadow: 2px 0 8px rgba(200,40,40,0.08);
+}
+body.dark-mode .sidebar-header h2,
+body.dark-mode .test-header h2,
+body.dark-mode .modal-header h2 { color: var(--dark-primary); }
+body.dark-mode .timer { background-color: #7a1e1e; color: #fff; }
+body.dark-mode .question-container {
+    background-color: var(--dark-card);
+    box-shadow: 0 2px 8px rgba(200,40,40,0.08);
+    border: 1px solid var(--dark-border);
+}
+body.dark-mode .modal-content { background-color: var(--dark-card); color: var(--dark-text-color); }
+body.dark-mode .stat-card { background-color: #0d1f14; border: 1px solid var(--dark-border); }
+body.dark-mode #test-screen { background: var(--dark-bg) !important; }
+body.dark-mode .mobile-top-bar { background: var(--dark-card) !important; border-color: var(--dark-border) !important; }
+body.dark-mode .mobile-timer-clone { background-color: #7a1e1e !important; }
+body.dark-mode #start-screen { background-color: #0d1f14 !important; }
+body.dark-mode #start-screen h1 { color: var(--dark-primary) !important; }
+body.dark-mode #start-screen > p { color: var(--dark-text-color) !important; }
+body.dark-mode #start-screen li { color: var(--dark-text-color) !important; }
+body.dark-mode #start-screen h2 { color: var(--dark-text-color) !important; }
+body.dark-mode #start-screen strong { color: #fff !important; }
+body.dark-mode #start-screen input[type="text"] {
+    background: #4a0000 !important; color: #fff !important; border-color: var(--dark-border) !important;
+}
+body.dark-mode #instruction-screen { background: #0d1f14 !important; }
+body.dark-mode #instruction-screen h2 { color: var(--dark-text-color) !important; }
+body.dark-mode .instruction-box { background: linear-gradient(135deg, #3b0000, #1a2e20) !important; }
+body.dark-mode .instruction-title { color: var(--dark-primary) !important; border-left-color: var(--dark-primary) !important; }
+body.dark-mode .instruction-list li { background: #2a0f0f !important; color: var(--dark-text-color) !important; }
+body.dark-mode .instruction-list li:hover { background: #4a1010 !important; }
+body.dark-mode .custom-check { border-color: var(--dark-primary) !important; }
+body.dark-mode .instruction-checkbox input:checked + .custom-check::after { color: var(--dark-primary) !important; }
+body.dark-mode .instruction-checkbox { color: var(--dark-text-color) !important; }
+
+/* ── OPTIONS ── */
+.option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; border: 1.5px solid #ffcdd2;
+    border-radius: 10px; margin-bottom: 10px; cursor: pointer;
+    background: #fff; transition: border-color 0.15s, background 0.15s;
+    user-select: none;
+}
+.option:hover { border-color: #c62828; background: #fff5f5; }
+.option.selected { border-color: #8e0000; background: #ffcdd2; }
+.option.correct { border-color: #2d8a4e !important; background: rgba(45,138,78,0.15) !important; }
+.option.incorrect { border-color: #e53935 !important; background: rgba(229,57,53,0.1) !important; }
+.opt-letter {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1.5px solid #ef9a9a; display: flex; align-items: center;
+    justify-content: center; font-size: 14px; font-weight: 700;
+    flex-shrink: 0; background: #fff5f5; color: #c62828;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.option.selected .opt-letter { background: #8e0000; border-color: #8e0000; color: #fff; }
+.option.correct .opt-letter { background: #2d8a4e; border-color: #2d8a4e; color: #fff; }
+.option.incorrect .opt-letter { background: #e53935; border-color: #e53935; color: #fff; }
+.opt-text { font-size: 15px; color: #2a0f0f; flex: 1; line-height: 1.5; }
+.option.selected .opt-text { color: #8e0000; font-weight: 600; }
+.option.correct .opt-text { color: #1a5c34; font-weight: 600; }
+.option.incorrect .opt-text { color: #b71c1c; font-weight: 600; }
+.option input[type="radio"] { display: none; }
+body.dark-mode .option { background: #2a0f0f !important; border-color: #2a4a34 !important; }
+body.dark-mode .option:hover { border-color: #ef5350 !important; background: #4a1010 !important; }
+body.dark-mode .option.selected { border-color: #ef9a9a !important; background: #3b0808 !important; }
+body.dark-mode .opt-letter { background: #4a1010 !important; border-color: #2a4a34 !important; color: #ef9a9a !important; }
+body.dark-mode .option.selected .opt-letter { background: #c62828 !important; border-color: #c62828 !important; color: #fff !important; }
+body.dark-mode .opt-text { color: var(--dark-text-color) !important; }
+body.dark-mode .option.selected .opt-text { color: #ffcdd2 !important; }
+body.dark-mode .option.correct { border-color: #4caf6f !important; background: rgba(45,138,78,0.2) !important; }
+body.dark-mode .option.incorrect { border-color: #ef9a9a !important; background: rgba(229,57,53,0.15) !important; }
+
+.correct-indicator { margin-left: 8px; font-weight: bold; color: #2d8a4e; font-size: 13px; }
+.incorrect-indicator { margin-left: 8px; font-weight: bold; color: #e53935; font-size: 13px; }
+
+/* ── INSTRUCTION BOX ── */
+.instruction-box {
+    max-width: 900px; margin: auto;
+    background: linear-gradient(135deg, #e8f5ec, #ffcdd2);
+    padding: 30px; border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(198,40,40,0.15);
+    line-height: 1.8;
+}
+.instruction-title {
+    font-size: 24px; font-weight: 800; color: #8e0000;
+    margin-bottom: 15px; border-left: 5px solid #c62828; padding-left: 10px;
+    font-family: 'Playfair Display', serif;
+}
+.instruction-list { padding-left: 20px; }
+.instruction-list li {
+    margin-bottom: 10px; font-size: 16px; background: white;
+    padding: 10px 12px; border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(198,40,40,0.1); transition: 0.2s;
+    border-left: 3px solid transparent;
+}
+.instruction-list li:hover { transform: translateX(5px); background: #fff5f5; border-left-color: #c62828; }
+.instruction-checkbox { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 16px; font-weight: 600; }
+.instruction-checkbox input { display: none; }
+.custom-check {
+    width: 20px; height: 20px; border: 2px solid #c62828;
+    border-radius: 4px; display: inline-block; position: relative; cursor: pointer;
+}
+.instruction-checkbox input:checked + .custom-check::after {
+    content: "\2714"; position: absolute; top: -2px; left: 3px; font-size: 16px; color: #c62828;
+}
+
+#start-test-btn {
+    margin-top: 20px; width: 100%;
+    background: linear-gradient(135deg, #8e0000, #c62828);
+    box-shadow: 0 6px 15px rgba(198,40,40,0.4); transition: 0.3s; border-radius: 8px;
+}
+#start-test-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(198,40,40,0.6); }
+
+/* ── SIDEBAR ── */
+.sidebar {
+    width: 300px; background-color: var(--white); height: 100vh;
+    padding: 20px; box-shadow: 2px 0 8px rgba(198,40,40,0.12);
+    position: fixed; overflow-y: auto; right: 0; left: auto;
+    border-left: 1px solid #ffcdd2;
+}
+.sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ffcdd2; }
+.sidebar-header h2 { color: var(--primary-color); font-family: 'Playfair Display', serif; }
+.test-info { margin-bottom: 20px; }
+.test-info p { margin: 5px 0; color: var(--light-text); display: flex !important; gap: 6px; font-size: 16px !important; }
+.test-info strong { font-weight: 700 !important; color: #000 !important; }
+.question-palette { margin-bottom: 20px; }
+.palette-title { font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; }
+.palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; width: 100%; overflow-x: hidden; }
+.palette-btn {
+    width: 100%; max-width: 40px; aspect-ratio: 1/1; border-radius: 50%;
+    border: 1px solid #ddd; background-color: #FF474D;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.3s; margin: auto; font-size: 12px; font-weight: 700;
+}
+.palette-btn:hover { background-color: #f59e0b; transform: scale(1.1); }
+.palette-btn.answered { background-color: #22c55e; color: #fff; border-color: #16a34a; }
+.palette-btn.marked { background-color: #90D5FF; color: #000; border-color: #0077cc; }
+.palette-btn.current { background-color: #fff; border: 2.5px solid var(--primary-color); color: var(--primary-color); }
+.palette-btn.review-correct { background-color: #22c55e !important; color: #fff !important; border-color: #16a34a !important; }
+.palette-btn.review-wrong { background-color: #ef4444 !important; color: #fff !important; border-color: #dc2626 !important; }
+.palette-btn.review-unanswered { background-color: #3b82f6 !important; color: #fff !important; border-color: #2563eb !important; }
+.palette-btn.review-correct.current,
+.palette-btn.review-wrong.current,
+.palette-btn.review-unanswered.current { outline: 3px solid var(--primary-color); outline-offset: 1px; }
+body.dark-mode .palette-btn { background-color: #FF474D !important; color: var(--dark-primary); border: 2px solid var(--dark-primary); }
+body.dark-mode .palette-btn.answered { background-color: #16a34a !important; color: white !important; border-color: #15803d !important; }
+body.dark-mode .palette-btn.marked { background-color: #0077cc !important; color: white !important; border-color: #0077cc !important; }
+body.dark-mode .palette-btn.current { background-color: white !important; border: 2.5px solid var(--dark-primary) !important; color: var(--dark-primary) !important; }
+body.dark-mode .palette-btn.review-correct { background-color: #16a34a !important; border-color: #15803d !important; }
+body.dark-mode .palette-btn.review-wrong { background-color: #dc2626 !important; border-color: #b91c1c !important; }
+body.dark-mode .palette-btn.review-unanswered { background-color: #2563eb !important; border-color: #1d4ed8 !important; }
+
+/* ── BUTTONS ── */
+.btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 700; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+.btn-primary { background-color: var(--primary-color); color: white; }
+.btn-primary:hover { background-color: var(--primary-dark); }
+.btn-outline { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+.btn-outline:hover { background-color: #fff5f5; }
+.mark-btn {
+    margin-left: 10px; background-color: transparent;
+    border: 1.5px solid #c62828; color: #c62828;
+    padding: 5px 10px; border-radius: 8px; font-size: 12px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+}
+.mark-btn.marked { background-color: #c62828; color: white; }
+body.dark-mode .btn-primary { background-color: var(--dark-primary); color: #000; }
+body.dark-mode .btn-outline { border-color: var(--dark-primary); color: var(--dark-primary); }
+body.dark-mode .mark-btn { border-color: var(--dark-secondary); color: var(--dark-secondary); }
+body.dark-mode .mark-btn.marked { background-color: var(--dark-secondary); color: #000; }
+
+/* ── FANCY BUTTONS ── */
+.fancy-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 13px 28px; font-size: 16px; font-weight: 700; border-radius: 50px;
+    border: none; cursor: pointer; text-decoration: none; letter-spacing: 0.4px;
+    position: relative; overflow: hidden;
+    transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease;
+    font-family: 'DM Sans', sans-serif;
+}
+.fancy-btn::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0); transition: background 0.2s; border-radius: inherit; }
+.fancy-btn:hover::after { background: rgba(255,255,255,0.12); }
+.fancy-btn:active { transform: scale(0.96) !important; }
+.fancy-btn:hover { transform: translateY(-3px) scale(1.03); }
+.join-btn { background: linear-gradient(135deg, #0088cc, #006699); color: white; box-shadow: 0 5px 18px rgba(0,136,204,0.45); }
+.join-btn:hover { box-shadow: 0 8px 24px rgba(0,136,204,0.65); color: white; }
+.submit-fancy-btn { background: linear-gradient(135deg, #c62828, #8e0000); color: white; box-shadow: 0 5px 18px rgba(198,40,40,0.45); flex: 1; max-width: 280px; }
+.submit-fancy-btn:hover { box-shadow: 0 8px 24px rgba(198,40,40,0.65); }
+.pdf-download-btn {
+    background: linear-gradient(135deg, #f97316, #ea580c); color: white !important;
+    font-weight: 700; border-radius: 30px; transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.4); padding: 13px 28px; font-size: 16px;
+    flex: 1; max-width: 280px; display: inline-flex; align-items: center; justify-content: center;
+}
+.pdf-download-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(249,115,22,0.6); color: white !important; }
+.footer-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 700;
+    text-decoration: none; color: white; letter-spacing: 0.3px;
+    transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s ease, filter 0.18s;
+    font-family: 'DM Sans', sans-serif;
+}
+.footer-btn:hover { transform: translateY(-3px) scale(1.06); filter: brightness(1.1); color: white; }
+.footer-btn:active { transform: scale(0.95); }
+.more-btn { background: linear-gradient(135deg, #c62828, #8e0000); box-shadow: 0 4px 14px rgba(198,40,40,0.4); }
+.more-btn:hover { box-shadow: 0 7px 20px rgba(198,40,40,0.65); }
+.back-btn { background: linear-gradient(135deg, #22c55e, #16a34a); box-shadow: 0 4px 14px rgba(34,197,94,0.4); }
+.back-btn:hover { box-shadow: 0 7px 20px rgba(34,197,94,0.65); }
+.report-btn { background: linear-gradient(135deg, #f97316, #dc2626); box-shadow: 0 4px 14px rgba(239,68,68,0.4); }
+.report-btn:hover { box-shadow: 0 7px 20px rgba(239,68,68,0.65); }
+
+/* ── LAYOUT ── */
+.main-content { flex: 1; margin-left: 0; margin-right: 300px; padding: 20px; }
+.test-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ffcdd2;
+}
+.test-header h2 { font-family: 'Playfair Display', serif; color: var(--primary-dark); font-size: 20px; }
+body.dark-mode .test-header h2 { color: var(--dark-primary) !important; }
+.timer {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+    color: white; padding: 10px 20px; border-radius: 40px;
+    font-weight: 800; font-size: 18px; min-width: 140px; text-align: center;
+    font-family: 'DM Sans', monospace; letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+}
+.progress-container { margin-bottom: 20px; }
+.progress-bar { height: 10px; background-color: #ffcdd2; border-radius: 5px; overflow: hidden; }
+.progress { height: 100%; background: linear-gradient(90deg, #c62828, #ef9a9a); width: 0%; transition: width 0.3s; border-radius: 5px; }
+.progress-text { display: flex; justify-content: space-between; margin-top: 5px; font-size: 14px; color: var(--light-text); }
+.question-container {
+    background-color: var(--white); border-radius: 12px; padding: 24px;
+    margin-bottom: 20px; box-shadow: 0 4px 16px rgba(198,40,40,0.1);
+    border: 1px solid #ffcdd2;
+}
+.question-number { color: var(--primary-color); font-weight: 800; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+.question-text { margin-bottom: 20px; font-size: 17px; line-height: 1.6; color: var(--dark-text); }
+.options { margin-left: 0; }
+.navigation-btns { display: flex; justify-content: space-between; margin-top: 30px; align-items: center; }
+.submit-section {
+    display: flex; justify-content: space-between; align-items: center;
+    width: 100%; max-width: 620px; margin: 24px auto; gap: 14px; flex-wrap: wrap;
+}
+.modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(30,0,0,0.6); z-index: 1000;
+    justify-content: center; align-items: center;
+}
+.modal-content {
+    background-color: white; border-radius: 14px; width: 80%; max-width: 600px;
+    padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: modalFadeIn 0.3s;
+}
+@keyframes modalFadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #ffcdd2; }
+.modal-header h2 { color: var(--primary-color); font-family: 'Playfair Display', serif; }
+.close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: var(--light-text); }
+.result-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px; }
+.stat-card { background-color: var(--light-bg); border-radius: 10px; padding: 15px; text-align: center; border: 1px solid #ffcdd2; }
+.stat-card h3 { color: #000; margin-bottom: 10px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat-card p { font-size: 28px; font-weight: 800; }
+.correct-stat { color: var(--correct-color); }
+.incorrect-stat { color: var(--incorrect-color); }
+.score-stat { color: var(--primary-color); }
+.review-btn { margin-top: 20px; width: 100%; }
+.button2 {
+    background-color: #c62828; color: white; border: none;
+    padding: 12px 28px; font-size: 16px; font-weight: 700; border-radius: 30px;
+    cursor: pointer; box-shadow: 0 4px 8px rgba(198,40,40,0.3);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+}
+.button2:hover { background-color: #8e0000; box-shadow: 0 6px 12px rgba(198,40,40,0.5); color: #fff; }
+
+/* ── DARK MODE TOGGLE ── */
+#dark-mode-toggle-bottom {
+    position: absolute; top: 18px; right: 18px; font-size: 22px; padding: 8px 18px;
+    border-radius: 40px; border: none; cursor: pointer;
+    background: linear-gradient(45deg, #8e0000, #c62828); color: white;
+    display: flex; align-items: center; gap: 7px;
+    box-shadow: 0 4px 15px rgba(198,40,40,0.5);
+    transition: background 0.4s, box-shadow 0.4s, transform 0.2s;
+    font-family: 'DM Sans', sans-serif; font-weight: 700;
+}
+#dark-mode-toggle-bottom:hover { box-shadow: 0 6px 20px rgba(198,40,40,0.8); }
+body.dark-mode #dark-mode-toggle-bottom {
+    background: linear-gradient(45deg, #f7971e, #ffd200) !important;
+    box-shadow: 0 4px 15px rgba(255,210,0,0.6) !important;
+}
+body.dark-mode #dark-mode-toggle-bottom .icon { color: #333 !important; }
+body.dark-mode #dark-mode-toggle-bottom span:not(.icon) { color: #333 !important; }
+
+#test-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--light-bg); z-index: 9998; display: none; overflow: auto; }
+#user-name-display {
+    background: linear-gradient(135deg, #8e0000, #c62828);
+    color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 14px;
+}
+.mobile-top-bar { display: none; }
+@media (max-width: 768px) {
+    .mobile-top-bar {
+        display: flex; justify-content: space-between; align-items: center;
+        padding: 8px 10px; background: #fff; border-bottom: 1px solid #ffcdd2;
+        margin-bottom: 8px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .mobile-timer-clone {
+        background: linear-gradient(135deg, #dc2626, #991b1b);
+        color: white; padding: 6px 14px; border-radius: 30px;
+        font-weight: 800; font-size: 15px; min-width: 100px; text-align: center;
+    }
+    #mobile-name-display {
+        background: linear-gradient(135deg, #8e0000, #c62828);
+        color: white; padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 13px;
+    }
+    #user-name-display { display: none !important; }
+    .sidebar .timer { display: none !important; }
+    .sidebar .sidebar-header { display: none !important; }
+    body { display: flex; flex-direction: column; }
+    .sidebar { position: relative; width: 100%; height: auto; right: 0; left: 0; box-shadow: none; margin-bottom: 10px; }
+    .question-palette { max-height: 200px; overflow-y: auto; }
+    .main-content { margin: 0 !important; width: 100%; padding: 10px; }
+    .navigation-btns { flex-direction: row !important; gap: 8px; align-items: center; }
+    #prev-btn { padding: 8px 14px !important; font-size: 13px !important; border-radius: 6px !important; flex-shrink: 0; }
+    #next-btn { padding: 14px 28px !important; font-size: 17px !important; border-radius: 8px !important; flex: 1; }
+    .navigation-btns > div { display: flex; flex: 1; gap: 8px; align-items: center; }
+    #mark-btn { font-size: 11px !important; padding: 6px 8px !important; flex-shrink: 0; }
+}
+@media (max-width: 576px) { .palette-grid { grid-template-columns: repeat(4, 1fr); } .result-stats { grid-template-columns: 1fr; } }
+#pdf-print-area { display: none; }
+@media print {
+    body > * { display: none !important; }
+    #pdf-print-area { display: block !important; font-family: Arial, sans-serif; color: #111; padding: 20px; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div id="start-screen" style="
+    position:fixed;top:0;left:0;width:100%;height:100%;
+    background:white;z-index:9999;display:flex;
+    flex-direction:column;justify-content:flex-start;align-items:center;
+    text-align:center;padding:40px 20px 40px;overflow-y:auto;
+    font-family:'DM Sans',sans-serif;">
+
+<button id="dark-mode-toggle-bottom" aria-label="Toggle dark mode">
+  <span class="icon" style="display:inline-block;transition:transform 0.6s ease;">🌙</span>
+  <span style="font-size:13px;font-weight:700;letter-spacing:0.5px;">Dark</span>
+</button>
+
+<!-- Logo / Brand -->
+<div style="margin-bottom:6px;">
+  <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#8e0000,#ef5350);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 12px;
+    box-shadow:0 8px 24px rgba(198,40,40,0.35);font-size:34px;">🏋️️</div>
+</div>
+
+<h1 style="color:#8e0000;font-size:32px;font-family:'Playfair Display',serif;margin-bottom:4px;">
+  physical education
+</h1>
+  <p style="font-size:16px;margin:6px 0;">Unit <strong style="color:#8e0000;">6</strong></p>
+<p style="font-size:16px;margin:6px 0;">Provided by <strong style="color:#8e0000;">Thunderstudy</strong></p>
+
+<a href="https://t.me/thunderstudy_official" target="_blank"
+  style="display:inline-flex;align-items:center;gap:8px;margin:8px 0 14px;
+  background:linear-gradient(135deg,#0088cc,#006699);color:white;text-decoration:none;
+  padding:10px 24px;border-radius:30px;font-size:15px;font-weight:700;
+  box-shadow:0 5px 16px rgba(0,136,204,0.45);
+  transition:transform 0.18s,box-shadow 0.18s;"
+  onmouseover="this.style.transform='translateY(-3px) scale(1.04)';this.style.boxShadow='0 8px 22px rgba(0,136,204,0.65)'"
+  onmouseout="this.style.transform='';this.style.boxShadow='0 5px 16px rgba(0,136,204,0.45)'">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="white" style="flex-shrink:0;">
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.607c-.148.666-.543.828-1.098.516l-3.04-2.24-1.467 1.413c-.162.162-.298.298-.611.298l.217-3.083 5.613-5.067c.244-.217-.054-.337-.378-.12L7.08 14.807 4.09 13.89c-.657-.205-.67-.657.137-.973l10.88-4.196c.548-.198 1.027.133.855.973z"/>
+  </svg>
+  @thunderstudy_official
+</a>
+
+<div style="max-width:560px;text-align:left;margin:10px auto 18px;
+  background:linear-gradient(135deg,#fff5f5,#ffcdd2);
+  border-radius:12px;padding:18px 22px;border-left:4px solid #c62828;">
+  <h2 style="margin-bottom:12px;color:#8e0000;font-size:18px;font-family:'Playfair Display',serif;">📋 Quick Overview</h2>
+  <ul style="text-align:left;line-height:2;font-size:15px;padding-left:18px;">
+    <li><strong>50 Questions</strong></li>
+    <li><strong>60 Minutes</strong> total time</li>
+    <li><strong>+5 marks</strong> for correct &nbsp;|&nbsp; <strong>−1 mark</strong> for wrong</li>
+    <li>No penalty for <strong>unanswered</strong> questions</li>
+    <li>Test <strong>auto-submits</strong> when time ends</li>
+    <li>Do <strong>not switch tabs</strong> or exit fullscreen during test</li>
+  </ul>
+</div>
+
+<div style="margin:10px 0;">
+  <input type="text" id="username-input" placeholder="Enter your name"
+    style="padding:10px;width:260px;border-radius:10px;border:2px solid #c62828;
+    font-size:16px;text-align:center;outline:none;font-family:'DM Sans',sans-serif;">
+</div>
+<div id="sid-display-area" style="font-size:13px;font-weight:700;color:#8e0000;background:rgba(198,40,40,0.1);padding:5px 15px;border-radius:20px;display:none;margin-top:4px;">
+    🪪 ID: <span id="sid-value">---</span>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:11px;margin-top:6px;">
+
+  <button onclick="startMock()" style="
+      width:260px;background:linear-gradient(135deg,#8e0000,#c62828);color:white;padding:13px 36px;
+      font-size:18px;font-weight:700;border:none;border-radius:30px;cursor:pointer;
+      box-shadow:0 6px 20px rgba(198,40,40,0.45);transition:transform 0.18s,box-shadow 0.18s;
+      font-family:'DM Sans',sans-serif;"
+    onmouseover="this.style.transform='translateY(-3px) scale(1.04)';this.style.boxShadow='0 10px 28px rgba(198,40,40,0.65)'"
+    onmouseout="this.style.transform='';this.style.boxShadow='0 6px 20px rgba(198,40,40,0.45)'"
+    onmousedown="this.style.transform='scale(0.97)'"
+    onmouseup="this.style.transform='translateY(-3px) scale(1.04)'">
+    🚀 Start Mock
+  </button>
+
+  <button onclick="window.location.href='https://commercesehoga.github.io/commerce/bst/result.html'" style="
+      width:260px;background:linear-gradient(135deg,#22c55e,#15803d);color:white;padding:13px 36px;
+      font-size:18px;font-weight:700;border:none;border-radius:30px;cursor:pointer;
+      box-shadow:0 6px 20px rgba(34,197,94,0.4);transition:transform 0.18s,box-shadow 0.18s;
+      font-family:'DM Sans',sans-serif;"
+    onmouseover="this.style.transform='translateY(-3px) scale(1.04)'"
+    onmouseout="this.style.transform=''">
+    📊 Previous Result
+  </button>
+
+  <button onclick="window.open('https://commercesehoga.blogspot.com/','_blank')" style="
+      width:260px;background:linear-gradient(135deg,#c62828,#ef9a9a);color:white;padding:13px 36px;
+      font-size:18px;font-weight:700;border:none;border-radius:30px;cursor:pointer;
+      box-shadow:0 6px 20px rgba(126,200,164,0.4);transition:transform 0.18s,box-shadow 0.18s;
+      font-family:'DM Sans',sans-serif;"
+    onmouseover="this.style.transform='translateY(-3px) scale(1.04)'"
+    onmouseout="this.style.transform=''">
+    📚 More Mock Tests
+  </button>
+
+</div>
+</div>
+
+<!-- INSTRUCTION SCREEN -->
+<div id="instruction-screen" style="
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:white;z-index:9999;display:none;overflow:auto;padding:30px;">
+<h2 style="text-align:center;margin-bottom:20px;font-family:'Playfair Display',serif;color:#8e0000;">Please read the instructions carefully</h2>
+<div class="instruction-box">
+<h3 class="instruction-title">General Instructions</h3>
+<ol class="instruction-list">
+<li>Total duration of test is <strong>60 minutes</strong>. Timer shown in sidebar.</li>
+<li>Test <strong>auto-submits</strong> when the timer reaches zero.</li>
+<li>The test runs in <strong>fullscreen mode</strong>. Exiting fullscreen starts a <strong>5-second countdown</strong> to auto-submit.</li>
+<li><strong>Do not switch tabs</strong>. Switching tabs starts a <strong>2-second countdown</strong> to auto-submit.</li>
+<li>Return to fullscreen or the tab before the countdown ends to continue safely.</li>
+<li>Question palette on the right shows answered, marked, and current status.</li>
+<li>Each correct answer: <strong>+5 marks</strong>. Each wrong answer: <strong>−1 mark</strong>. Unanswered: <strong>0 marks</strong>.</li>
+</ol>
+<div style="margin-top:20px;">
+  <strong>Question Status Legend:</strong>
+  <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;">
+    <div style="display:flex;align-items:center;gap:5px;font-size:12px;"><div style="width:15px;height:15px;border-radius:50%;background:#50ef5d;"></div><span>Answered</span></div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:12px;"><div style="width:15px;height:15px;border-radius:50%;background:#90D5FF;"></div><span>Marked</span></div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:12px;"><div style="width:15px;height:15px;border-radius:50%;border:2px solid #c62828;background:white;"></div><span>Current</span></div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:12px;"><div style="width:15px;height:15px;border-radius:50%;background:#FF474D;border:1px solid #ddd;"></div><span>Unanswered</span></div>
+  </div>
+</div>
+<label class="instruction-checkbox">
+    <input type="checkbox" id="agree-checkbox">
+    <span class="custom-check"></span>
+    I have read and understood all instructions
+</label>
+<br><br>
+<button id="start-test-btn" disabled style="
+background:#c62828;color:white;padding:12px 24px;border:none;
+border-radius:8px;font-size:18px;cursor:not-allowed;opacity:0.6;
+font-family:'DM Sans',sans-serif;font-weight:700;">
+Start Test
+</button>
+</div>
+</div>
+
+<!-- TEST SCREEN -->
+<div id="test-screen">
+<div class="sidebar">
+    <div class="sidebar-header">
+        <h2>physical education</h2>
+        <div id="focus-laptop" style="font-size:12px;font-weight:bold;color:green;margin-top:5px;">● Focus On</div>
+    </div>
+        <div class="timer">01:00:00</div>
+        
+    <div class="test-info">
+        <p><strong>Subject:</strong> <span id="subject-label">Histroy</span></p>
+        <p><strong>Questions:</strong> 50</p>
+        <p><strong>Duration:</strong> 60 min</p>
+        <p><strong>Marking:</strong> +5 / -1</p>
+        <p><strong>All Chapter</strong> <span id="current-section">-</span></p>
+    </div>
+    <p><strong>Student ID:</strong> <span id="display-user-sid">---</span></p>
+    <div class="question-palette">
+        <div class="palette-title">
+            <span>Questions</span>
+            <span id="answered-count">0/50</span>
+        </div>
+        <div class="palette-grid" id="question-palette-grid"></div>
+        <div id="palette-legend" style="margin-top:12px;font-size:12px;"></div>
+    </div>
+</div>
+
+<div class="main-content">
+<div class="mobile-top-bar">
+    <div class="mobile-timer-clone">01:00:00</div>
+    <div id="focus-mobile" style="font-size:10px;font-weight:bold;color:green;">● Focus On</div>
+    <div id="mobile-name-display">👤 Thunder</div>
+</div>
+
+<div class="test-header">
+  <div id="user-name-display">👤 Thunder</div>
+  <h2>Question <span id="current-q-number">1</span>/50</h2>
+  <div class="progress-container">
+    <div class="progress-bar"><div class="progress" id="test-progress"></div></div>
+    <div class="progress-text"><span>Progress</span><span id="progress-percent">0%</span></div>
+  </div>
+</div>
+
+<div class="question-container">
+<div class="question-number">Question <span id="q-number">1</span></div>
+<div class="question-text" id="question-text"></div>
+<div class="options" id="options-container"></div>
+<div class="navigation-btns">
+<button class="btn btn-outline" id="prev-btn">&#8592; Previous</button>
+<div>
+<button class="mark-btn" id="mark-btn">Mark for Review</button>
+<button class="btn btn-primary" id="next-btn">Next &#8594;</button>
+</div>
+</div>
+</div>
+
+<div class="submit-section">
+    <a href="https://t.me/thunderstudy_official" target="_blank" class="fancy-btn join-btn">⚡ Join Thunder</a>
+    <button class="fancy-btn submit-fancy-btn" id="submit-test-btn">✅ Submit Test</button>
+</div>
+
+<footer style="background:linear-gradient(135deg,#1a0000,#2a0000);color:#d4edd9;text-align:center;padding:22px 16px;margin-top:10px;border-top:2px solid #c62828;">
+   <p style="font-size:13px;color:#ef9a9a;margin-bottom:14px;">© 2025 Thunder. All Rights Reserved.</p>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:14px;">
+    <a href="https://commercesehoga.blogspot.com/" target="_blank" class="footer-btn more-btn">📚 More Mock</a>
+    <a href="https://commercesehoga.blogspot.com/" target="_blank" class="footer-btn back-btn">🌐 Back To Website</a>
+    <a href="https://t.me/mindmaster_robot" target="_blank" class="footer-btn report-btn">🚨 Report Error</a>
+</div>
+</footer>
+
+<!-- Results Modal -->
+<div class="modal" id="results-modal">
+<div class="modal-content">
+<div class="modal-header">
+<h2>🏋 Test Results</h2>
+<button class="close-btn" id="close-modal">×</button>
+</div>
+<div class="result-stats">
+<div class="stat-card"><h3>Correct</h3><p class="correct-stat" id="correct-answers">0</p></div>
+<div class="stat-card"><h3>Incorrect</h3><p class="incorrect-stat" id="incorrect-answers">0</p></div>
+<div class="stat-card"><h3>Unanswered</h3><p style="color:#6b7280;" id="unanswered">50</p></div>
+<div class="stat-card"><h3>Total Score</h3><p class="score-stat" id="total-score">0</p></div>
+</div>
+<div style="margin-top:8px;padding:12px;background:#fff5f5;border-radius:8px;border:1px solid #ffcdd2;">
+<p style="margin:3px 0;">Percentage: <strong><span id="percentage">0</span>%</strong></p>
+<p style="margin:3px 0;">Accuracy: <strong><span id="accuracy">0</span>%</strong></p>
+</div>
+<div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+<button class="btn btn-primary review-btn" id="review-btn" style="flex:1;margin-top:0;border-radius:8px;">Review Answers</button>
+<button class="btn pdf-download-btn" id="download-pdf-btn" style="flex:1;">📄 Download PDF</button>
+</div>
+</div>
+</div>
+
+</div><!-- /main-content -->
+</div><!-- /test-screen -->
+
+<script>
+/* ============================================================
+   physical education MOCK TEST DATA
+   ============================================================ */
+const mockTest = {
+    title: "physical education Mock",
+    questions: [
+{
+id: 1,
+section: "National Sports Policies",
+text: "The National Sports Policy of India was first formulated in which year?",
+options: { a: "1984", b: "2001", c: "2011", d: "1980" },
+correctAnswer: "a",
+explanation: "India's first National Sports Policy was formulated in 1984, revised in 2001 and later in 2011 (Draft).",
+marked: false,
+userAnswer: null
+},
+{
+id: 2,
+section: "National Sports Policies",
+text: "The National Sports Policy 2001 emphasized on:",
+options: { a: "Only elite sports", b: "Sports for all and excellence in sports", c: "Only rural sports", d: "Only school sports" },
+correctAnswer: "b",
+explanation: "NSP 2001 focused on 'Sports for All' (mass participation) and 'Excellence in Sports' (elite performance).",
+marked: false,
+userAnswer: null
+},
+{
+id: 3,
+section: "National Sports Policies",
+text: "Which of the following is a key objective of the National Sports Policy?",
+options: { a: "Promoting only cricket", b: "Broadbasing sports and achieving excellence", c: "Reducing sports budget", d: "Privatizing all sports" },
+correctAnswer: "b",
+explanation: "Key objectives include broadbasing sports, infrastructure development, talent identification, and achieving excellence at international events.",
+marked: false,
+userAnswer: null
+},
+{
+id: 4,
+section: "Sports Awards — Khel Ratna",
+text: "The Major Dhyan Chand Khel Ratna Award is India's highest sporting honor. It was originally named:",
+options: { a: "Arjuna Award", b: "Rajiv Gandhi Khel Ratna Award", c: "Dronacharya Award", d: "Rashtriya Khel Protsahan Puruskar" },
+correctAnswer: "b",
+explanation: "Originally named Rajiv Gandhi Khel Ratna Award (1991-2021), it was renamed to Major Dhyan Chand Khel Ratna Award in August 2021.",
+marked: false,
+userAnswer: null
+},
+{
+id: 5,
+section: "Sports Awards — Khel Ratna",
+text: "The Major Dhyan Chand Khel Ratna Award carries a cash prize of:",
+options: { a: "₹5 lakh", b: "₹10 lakh", c: "₹25 lakh", d: "₹50 lakh" },
+correctAnswer: "c",
+explanation: "The Khel Ratna Award currently carries a cash prize of ₹25 lakh (as of recent revisions).",
+marked: false,
+userAnswer: null
+},
+{
+id: 6,
+section: "Sports Awards — Arjuna Award",
+text: "The Arjuna Award was instituted in which year?",
+options: { a: "1961", b: "1971", c: "1981", d: "1991" },
+correctAnswer: "a",
+explanation: "The Arjuna Award was instituted in 1961 to recognize outstanding performance in sports.",
+marked: false,
+userAnswer: null
+},
+{
+id: 7,
+section: "Sports Awards — Arjuna Award",
+text: "The Arjuna Award currently carries a cash prize of:",
+options: { a: "₹5 lakh", b: "₹10 lakh", c: "₹15 lakh", d: "₹20 lakh" },
+correctAnswer: "c",
+explanation: "The Arjuna Award currently carries a cash prize of ₹15 lakh (enhanced from previous ₹5 lakh).",
+marked: false,
+userAnswer: null
+},
+{
+id: 8,
+section: "Sports Awards — Dronacharya Award",
+text: "The Dronacharya Award is given to:",
+options: { a: "Sportspersons for performance", b: "Coaches for producing medal-winning athletes", c: "Sports administrators", d: "Sports journalists" },
+correctAnswer: "b",
+explanation: "The Dronacharya Award recognizes outstanding coaches who have produced medal-winning athletes at international events.",
+marked: false,
+userAnswer: null
+},
+{
+id: 9,
+section: "Sports Awards — Dronacharya Award",
+text: "The Dronacharya Award was instituted in which year?",
+options: { a: "1961", b: "1975", c: "1985", d: "1995" },
+correctAnswer: "c",
+explanation: "The Dronacharya Award was instituted in 1985 to honor eminent coaches.",
+marked: false,
+userAnswer: null
+},
+{
+id: 10,
+section: "Career Opportunities",
+text: "Which of the following is a career option in Physical Education?",
+options: { a: "Physical Education Teacher (PET)", b: "Sports Coach", c: "Fitness Trainer", d: "All of the above" },
+correctAnswer: "d",
+explanation: "Career options include PET in schools, coaches, fitness trainers, sports administrators, physiotherapists, sports psychologists, etc.",
+marked: false,
+userAnswer: null
+},
+{
+id: 11,
+section: "Career Opportunities — Sports",
+text: "The Sports Authority of India (SAI) offers employment as:",
+options: { a: "Only athletes", b: "Coaches, trainers, and sports administrators", c: "Only medical staff", d: "Only groundsmen" },
+correctAnswer: "b",
+explanation: "SAI recruits coaches, assistant coaches, trainers, sports administrators, and support staff for various sports programs.",
+marked: false,
+userAnswer: null
+},
+{
+id: 12,
+section: "Career Opportunities — Yoga",
+text: "A graduate in Yoga can work as:",
+options: { a: "Yoga therapist in hospitals", b: "Yoga instructor in wellness centers", c: "Yoga teacher in schools", d: "All of the above" },
+correctAnswer: "d",
+explanation: "Yoga graduates have diverse opportunities: teaching, therapy, research, corporate wellness, and health tourism.",
+marked: false,
+userAnswer: null
+},
+{
+id: 13,
+section: "Courses in Physical Education",
+text: "The minimum qualification to become a Physical Education Teacher in government schools is:",
+options: { a: "BPEd (Bachelor of Physical Education)", b: "MPEd", c: "PhD in PE", d: "10th pass" },
+correctAnswer: "a",
+explanation: "BPEd (Bachelor of Physical Education) or B.P.Ed/B.Sc. PE is the minimum required degree for PET in most government schools.",
+marked: false,
+userAnswer: null
+},
+{
+id: 14,
+section: "Courses in Physical Education",
+text: "Which entrance exam is commonly required for admission to BPEd programs in India?",
+options: { a: "JEE", b: "NEET", c: "PET (Physical Education Test) or university-specific exams", d: "CLAT" },
+correctAnswer: "c",
+explanation: "Most universities conduct their own physical efficiency tests or use centralized exams like CPET for BPEd admissions.",
+marked: false,
+userAnswer: null
+},
+{
+id: 15,
+section: "Courses in Sports",
+text: "The National Institute of Sports (NIS) in Patiala offers which specialized course?",
+options: { a: "MBA in Sports Management", b: "Diploma in Sports Coaching", c: "MD in Sports Medicine", d: "BA in Sports Journalism" },
+correctAnswer: "b",
+explanation: "NIS Patiala offers diploma and certificate courses in sports coaching for various disciplines.",
+marked: false,
+userAnswer: null
+},
+{
+id: 16,
+section: "Courses in Yoga",
+text: "The Ministry of AYUSH offers which of the following yoga certifications?",
+options: { a: "Yoga Certification Board (YCB) levels", b: "Only PhD", c: "Only diploma", d: "No certification" },
+correctAnswer: "a",
+explanation: "The Yoga Certification Board (YCB) under Ministry of AYUSH offers various levels of yoga certifications (Level 1-4).",
+marked: false,
+userAnswer: null
+},
+{
+id: 17,
+section: "National Sports Policies",
+text: "The 'Khelo India' programme was launched to:",
+options: { a: "Promote only traditional sports", b: "Revive sports culture at grassroots and identify talent", c: "Replace all other sports schemes", d: "Only fund Olympic sports" },
+correctAnswer: "b",
+explanation: "Khelo India (launched 2018) aims to revive sports culture at grassroots, identify talent, and support elite athletes.",
+marked: false,
+userAnswer: null
+},
+{
+id: 18,
+section: "Career Opportunities",
+text: "Sports Journalism is a career option that involves:",
+options: { a: "Reporting and commentary on sports events", b: "Coaching athletes", c: "Managing sports facilities", d: "Treating sports injuries" },
+correctAnswer: "a",
+explanation: "Sports journalists report, write, broadcast, and commentate on sports events for media outlets.",
+marked: false,
+userAnswer: null
+},
+{
+id: 19,
+section: "Case Study — Khel Ratna Award",
+text: "CASE: A 25-year-old Indian athlete wins a gold medal at the Olympics for the first time in 50 years. The government considers her for the highest sporting honor.\n\nQ1: Which award will she MOST likely receive?",
+options: { a: "Arjuna Award", b: "Dronacharya Award", c: "Major Dhyan Chand Khel Ratna Award", d: "Rashtriya Khel Protsahan Puruskar" },
+correctAnswer: "c",
+explanation: "The Khel Ratna Award is India's highest sporting honor, given for exceptional and outstanding achievement in sports.",
+marked: false,
+userAnswer: null
+},
+{
+id: 20,
+section: "Case Study — Arjuna Award",
+text: "CASE: A national-level badminton player has consistently won medals at Commonwealth and Asian Games over 5 years but has never won an Olympic medal.\n\nQ1: Is this player eligible for the Arjuna Award?",
+options: { a: "Yes, consistent performance over 4 years qualifies", b: "No, only Olympic medalists qualify", c: "Only if they are under 25 years", d: "Only for team sports" },
+correctAnswer: "a",
+explanation: "The Arjuna Award requires consistent outstanding performance for the previous 4 years at international events, not only Olympic medals.",
+marked: false,
+userAnswer: null
+},
+{
+id: 21,
+section: "Case Study — Dronacharya Award",
+text: "CASE: A shooting coach has trained three athletes who won medals at the World Championships and Asian Games over 8 years. The coach is nominated for a national award.\n\nQ1: Which award is MOST appropriate for this coach?",
+options: { a: "Arjuna Award", b: "Dronacharya Award", c: "Khel Ratna Award", d: "Tenzing Norgay Award" },
+correctAnswer: "b",
+explanation: "The Dronacharya Award is specifically for coaches who have produced medal-winning athletes at international events.",
+marked: false,
+userAnswer: null
+},
+{
+id: 22,
+section: "Case Study — Career Planning",
+text: "CASE: A 18-year-old student loves sports but is not competitive enough to become a professional athlete. She wants a stable career in the sports field.\n\nQ1: Which career option would be MOST suitable for her?",
+options: { a: "Sports Physiotherapy (BPT with specialization)", b: "Only professional athlete", c: "Only sports betting", d: "Only gambling" },
+correctAnswer: "a",
+explanation: "Sports physiotherapy, sports nutrition, sports management, coaching, and teaching are excellent non-competitive careers in sports.",
+marked: false,
+userAnswer: null
+},
+{
+id: 23,
+section: "Case Study — Khelo India",
+text: "CASE: A rural state government wants to identify young talented athletes from villages and provide them with financial support and training.\n\nQ1: Which central government scheme can they partner with?",
+options: { a: "Midday Meal Scheme", b: "Khelo India Programme", c: "Swachh Bharat Mission", d: "Make in India" },
+correctAnswer: "b",
+explanation: "Khelo India focuses on grassroots talent identification, providing scholarships, training, and infrastructure support.",
+marked: false,
+userAnswer: null
+},
+{
+id: 24,
+section: "Case Study — National Sports Policy",
+text: "CASE: A state is planning to build new sports infrastructure in rural areas and introduce sports as a compulsory subject in schools.\n\nQ1: This aligns with which objective of the National Sports Policy?",
+options: { a: "Only elite sports promotion", b: "Broadbasing sports and mass participation", c: "Reducing sports funding", d: "Privatizing sports" },
+correctAnswer: "b",
+explanation: "Broadbasing sports through infrastructure and school sports is a key objective of the National Sports Policy.",
+marked: false,
+userAnswer: null
+},
+{
+id: 25,
+section: "Case Study — Career in Yoga",
+text: "CASE: A graduate with a degree in Yoga Science wants to work in a multi-specialty hospital helping patients with chronic diseases.\n\nQ1: What job role can they apply for?",
+options: { a: "Yoga Therapist", b: "Cardiac Surgeon", c: "Orthopedic Doctor", d: "Radiologist" },
+correctAnswer: "a",
+explanation: "Yoga therapists work in hospitals and wellness centers, using yogic techniques to complement medical treatment.",
+marked: false,
+userAnswer: null
+},
+{
+id: 26,
+section: "Case Study — Course Selection",
+text: "CASE: A student wants to become a Physical Education teacher in a government school after completing 12th grade.\n\nQ1: Which course should they pursue FIRST?",
+options: { a: "BPEd (Bachelor of Physical Education)", b: "MPEd directly", c: "PhD directly", d: "Diploma in Sports Management" },
+correctAnswer: "a",
+explanation: "BPEd is the minimum required degree for becoming a PET. MPEd is for higher studies and promotions.",
+marked: false,
+userAnswer: null
+},
+{
+id: 27,
+section: "Case Study — NIS Coaching",
+text: "CASE: A former national-level athlete wants to become a certified coach recognized by the government.\n\nQ1: Which institution should they approach?",
+options: { a: "IIT Delhi", b: "National Institute of Sports (NIS) Patiala", c: "AIIMS Delhi", d: "IIM Ahmedabad" },
+correctAnswer: "b",
+explanation: "NIS Patiala offers diploma and certificate courses in sports coaching recognized by the Ministry of Youth Affairs and Sports.",
+marked: false,
+userAnswer: null
+},
+{
+id: 28,
+section: "Case Study — Sports Awards Timing",
+text: "CASE: The Government of India announces national sports awards every year on a specific date to honor sportspersons.\n\nQ1: On which date are the National Sports Awards typically presented?",
+options: { a: "January 26 (Republic Day)", b: "August 15 (Independence Day)", c: "August 29 (National Sports Day)", d: "October 2 (Gandhi Jayanti)" },
+correctAnswer: "c",
+explanation: "National Sports Awards are presented on August 29, the birth anniversary of Major Dhyan Chand (National Sports Day).",
+marked: false,
+userAnswer: null
+},
+{
+id: 29,
+section: "Case Study — Career in Sports Management",
+text: "CASE: A commerce graduate with an interest in sports wants to organize tournaments, manage teams, and handle sponsorships.\n\nQ1: Which specialized course would be most suitable?",
+options: { a: "BSc in Physics", b: "MBA in Sports Management", c: "BA in History", d: "BCom without specialization" },
+correctAnswer: "b",
+explanation: "MBA in Sports Management prepares students for careers in sports administration, event management, marketing, and sponsorships.",
+marked: false,
+userAnswer: null
+},
+{
+id: 30,
+section: "Case Study — Target Olympic Podium Scheme",
+text: "CASE: The government identifies potential Olympic medal winners and provides them with financial support, foreign coaches, and international exposure.\n\nQ1: Which scheme is this?",
+options: { a: "Khelo India", b: "Target Olympic Podium Scheme (TOPS)", c: "Fit India Movement", d: "Midday Meal Scheme" },
+correctAnswer: "b",
+explanation: "TOPS is a flagship program of the Ministry of Youth Affairs and Sports to support potential Olympic medal winners.",
+marked: false,
+userAnswer: null
+},
+{
+id: 31,
+section: "A&R — Khel Ratna Award",
+text: "Assertion (A): The Major Dhyan Chand Khel Ratna Award is given only to individual sportspersons.\nReason (R): Team sportspersons are also eligible for the Khel Ratna Award.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — team sportspersons (cricket, hockey, football) have also received the Khel Ratna Award. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 32,
+section: "A&R — Arjuna Award",
+text: "Assertion (A): The Arjuna Award is given only to Olympic medalists.\nReason (R): The award recognizes consistent outstanding performance at international events over 4 years, not just Olympic medals.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — Arjuna Award is not limited to Olympic medalists. R is true (correct criteria).",
+marked: false,
+userAnswer: null
+},
+{
+id: 33,
+section: "A&R — Dronacharya Award",
+text: "Assertion (A): The Dronacharya Award is given to coaches only for lifetime achievement.\nReason (R): The award has two categories: Lifetime Achievement and Regular (for recent achievements).",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — Dronacharya has two categories: Lifetime and Regular. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 34,
+section: "A&R — National Sports Policy",
+text: "Assertion (A): The National Sports Policy focuses exclusively on elite sports.\nReason (R): The policy has twin objectives of 'Sports for All' and 'Excellence in Sports'.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — NSP includes mass participation (Sports for All) and excellence. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 35,
+section: "A&R — Khelo India",
+text: "Assertion (A): Khelo India is only for urban school children.\nReason (R): Khelo India has a specific vertical for rural and tribal talent identification.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — Khelo India covers rural, tribal, and urban areas. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 36,
+section: "A&R — Career in Sports",
+text: "Assertion (A): A degree in Physical Education is only useful for becoming a school teacher.\nReason (R): Physical Education graduates have diverse opportunities including coaching, fitness training, sports administration, and physiotherapy.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — PE graduates have many career options. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 37,
+section: "A&R — Sports Awards Timing",
+text: "Assertion (A): National Sports Awards are presented on August 15 (Independence Day).\nReason (R): August 29 is National Sports Day, the birth anniversary of Major Dhyan Chand.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — Awards are on August 29 (National Sports Day). R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 38,
+section: "A&R — SAI and NIS",
+text: "Assertion (A): The Sports Authority of India (SAI) and NIS Patiala are the same organization.\nReason (R): NIS Patiala is the training arm of SAI for coaching education.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — SAI is the parent body; NIS Patiala is a constituent unit under SAI. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 39,
+section: "A&R — Yoga Certification",
+text: "Assertion (A): Any private yoga institute's certificate is recognized by the government for employment.\nReason (R): The Yoga Certification Board (YCB) under Ministry of AYUSH provides standardized certification.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — only YCB-certified or UGC-recognized degree/diploma holders are preferred. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 40,
+section: "A&R — Career in Sports Journalism",
+text: "Assertion (A): Sports journalists must be former professional athletes.\nReason (R): Journalism skills and sports knowledge can be acquired through degree programs in mass communication with sports specialization.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — many sports journalists are not former athletes. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 41,
+section: "A&R — TOPS Scheme",
+text: "Assertion (A): The Target Olympic Podium Scheme (TOPS) provides funding only for training within India.\nReason (R): TOPS provides financial support for foreign exposure, international competitions, and hiring foreign coaches.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — TOPS funds foreign training and competitions. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 42,
+section: "A&R — BPEd Eligibility",
+text: "Assertion (A): BPEd can be pursued directly after 10th standard.\nReason (R): BPEd requires 10+2 (12th) pass with Physical Education as a subject or graduation in some cases.",
+options: { a: "Both A and R are true and R explains A", b: "Both A and R are true but R does NOT explain A", c: "A is false; R is true", d: "A is false; R is false" },
+correctAnswer: "c",
+explanation: "A is false — BPEd requires 10+2 or graduation. R is true.",
+marked: false,
+userAnswer: null
+},
+{
+id: 43,
+section: "Image-Based — National Sports Awards Hierarchy",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'>\n  <rect width='800' height='500' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>National Sports Awards — Hierarchy</text>\n\n  <!-- Khel Ratna (Top) -->\n  <rect x='250' y='60' width='300' height='60' fill='#f1c40f' stroke='#d4ac0d' stroke-width='3' rx='10'/>\n  <text x='400' y='85' text-anchor='middle' font-size='16' font-weight='bold' fill='#7d6608'>Major Dhyan Chand Khel Ratna</text>\n  <text x='400' y='105' text-anchor='middle' font-size='12'>Highest Sporting Honor (₹25 lakh)</text>\n\n  <!-- Arrow down -->\n  <line x1='400' y1='120' x2='400' y2='160' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <!-- Arjuna Award -->\n  <rect x='250' y='160' width='300' height='60' fill='#d5f5e3' stroke='#27ae60' stroke-width='3' rx='10'/>\n  <text x='400' y='185' text-anchor='middle' font-size='16' font-weight='bold' fill='#1e8449'>Arjuna Award</text>\n  <text x='400' y='205' text-anchor='middle' font-size='12'>Outstanding Performance (₹15 lakh)</text>\n\n  <!-- Arrow down -->\n  <line x1='400' y1='220' x2='400' y2='260' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <!-- Dronacharya Award -->\n  <rect x='250' y='260' width='300' height='60' fill='#fadbd8' stroke='#e74c3c' stroke-width='3' rx='10'/>\n  <text x='400' y='285' text-anchor='middle' font-size='16' font-weight='bold' fill='#922b21'>Dronacharya Award</text>\n  <text x='400' y='305' text-anchor='middle' font-size='12'>Outstanding Coaches (₹15 lakh)</text>\n\n  <!-- Arrow down -->\n  <line x1='400' y1='320' x2='400' y2='360' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <!-- Dhyan Chand Award -->\n  <rect x='250' y='360' width='300' height='60' fill='#fdebd0' stroke='#e67e22' stroke-width='3' rx='10'/>\n  <text x='400' y='385' text-anchor='middle' font-size='16' font-weight='bold' fill='#e67e22'>Dhyan Chand Award</text>\n  <text x='400' y='405' text-anchor='middle' font-size='12'>Lifetime Achievement (₹10 lakh)</text>\n\n  <!-- Side note: Rashtriya Khel Protsahan Puruskar -->\n  <rect x='600' y='360' width='160' height='60' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='680' y='385' text-anchor='middle' font-size='11' font-weight='bold'>Rashtriya Khel</text>\n  <text x='680' y='400' text-anchor='middle' font-size='11' font-weight='bold'>Protsahan Puruskar</text>\n  <text x='680' y='415' text-anchor='middle' font-size='9'>For promotion of sports</text>\n\n  <defs>\n    <marker id='arrowBlack' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'>\n      <polygon points='0 0, 10 3.5, 0 7' fill='#333'/>\n    </marker>\n  </defs>\n\n  <text x='400' y='490' text-anchor='middle' font-size='14' font-weight='bold'>Q: Which is the highest sporting honor in India?</text>\n</svg>\n\nQ: According to the hierarchy diagram, which is the highest sporting honor in India?",
+options: { a: "Arjuna Award", b: "Dronacharya Award", c: "Major Dhyan Chand Khel Ratna Award", d: "Dhyan Chand Award" },
+correctAnswer: "c",
+explanation: "Major Dhyan Chand Khel Ratna Award is India's highest sporting honor, followed by Arjuna, Dronacharya, and Dhyan Chand awards.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a pyramid or vertical hierarchy: Top (Gold) Khel Ratna Award, second (Green) Arjuna Award, third (Red) Dronacharya Award, fourth (Orange) Dhyan Chand Award. Include cash prize amounts and brief descriptions."
+},
+{
+id: 44,
+section: "Image-Based — Career Pathways in Physical Education",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'>\n  <rect width='800' height='500' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>Career Pathways in Physical Education &amp; Sports</text>\n\n  <!-- After 10+2 -->\n  <rect x='250' y='60' width='300' height='45' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='400' y='88' text-anchor='middle' font-size='14' font-weight='bold' fill='#1e8449'>After 10+2 (12th Standard)</text>\n\n  <!-- Arrow down -->\n  <line x1='400' y1='105' x2='400' y2='130' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <!-- BPEd Box -->\n  <rect x='250' y='130' width='300' height='45' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='400' y='150' text-anchor='middle' font-size='14' font-weight='bold' fill='#922b21'>BPEd (3-4 years)</text>\n  <text x='400' y='165' text-anchor='middle' font-size='11'>Bachelor of Physical Education</text>\n\n  <!-- Branch arrows -->\n  <line x1='550' y1='152' x2='620' y2='152' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n  <line x1='250' y1='152' x2='180' y2='152' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <!-- Left Branch: Teaching -->\n  <rect x='30' y='200' width='180' height='120' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='120' y='225' text-anchor='middle' font-size='12' font-weight='bold' fill='#1e8449'>Teaching Careers</text>\n  <text x='120' y='250' text-anchor='middle' font-size='10'>PET in Schools</text>\n  <text x='120' y='270' text-anchor='middle' font-size='10'>Lecturer in Colleges</text>\n  <text x='120' y='290' text-anchor='middle' font-size='10'>Assistant Professor</text>\n  <text x='120' y='310' text-anchor='middle' font-size='10'>Physical Director</text>\n\n  <!-- Right Branch: Non-Teaching -->\n  <rect x='590' y='200' width='180' height='120' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='680' y='225' text-anchor='middle' font-size='12' font-weight='bold' fill='#e67e22'>Non-Teaching Careers</text>\n  <text x='680' y='250' text-anchor='middle' font-size='10'>Sports Coach</text>\n  <text x='680' y='270' text-anchor='middle' font-size='10'>Fitness Trainer</text>\n  <text x='680' y='290' text-anchor='middle' font-size='10'>Sports Administrator</text>\n  <text x='680' y='310' text-anchor='middle' font-size='10'>Sports Journalist</text>\n\n  <!-- Higher Studies from BPEd -->\n  <line x1='400' y1='175' x2='400' y2='360' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n  <text x='410' y='270' font-size='11' fill='#333'>Higher Studies</text>\n\n  <rect x='250' y='360' width='300' height='45' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='400' y='380' text-anchor='middle' font-size='14' font-weight='bold' fill='#7d6608'>MPEd (2 years)</text>\n  <text x='400' y='395' text-anchor='middle' font-size='11'>Master of Physical Education</text>\n\n  <line x1='400' y1='405' x2='400' y2='430' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <rect x='250' y='430' width='300' height='45' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='400' y='450' text-anchor='middle' font-size='14' font-weight='bold' fill='#922b21'>PhD in Physical Education</text>\n  <text x='400' y='465' text-anchor='middle' font-size='11'>Research &amp; University Teaching</text>\n\n  <defs>\n    <marker id='arrowBlack' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'>\n      <polygon points='0 0, 10 3.5, 0 7' fill='#333'/>\n    </marker>\n  </defs>\n\n  <text x='400' y='495' text-anchor='middle' font-size='12' font-weight='bold'>Q: What is the minimum degree required to become a Physical Education Teacher (PET) in schools?</text>\n</svg>\n\nQ: According to the career pathway diagram, what is the minimum degree required to become a Physical Education Teacher (PET) in schools?",
+options: { a: "MPEd", b: "BPEd", c: "PhD", d: "10+2 pass" },
+correctAnswer: "b",
+explanation: "BPEd (Bachelor of Physical Education) is the minimum required degree for becoming a PET in most schools.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a career flowchart: After 10+2 → BPEd (Bachelor of Physical Education) → two branches: Teaching Careers (PET, Lecturer) and Non-Teaching Careers (Coach, Trainer, Administrator). Also show higher studies: MPEd → PhD."
+},
+{
+id: 45,
+section: "Image-Based — Khelo India Components",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'>\n  <rect width='800' height='500' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>Khelo India — Key Components</text>\n\n  <!-- Central circle -->\n  <circle cx='400' cy='250' r='60' fill='#1a5276'/>\n  <text x='400' y='245' text-anchor='middle' font-size='16' font-weight='bold' fill='white'>Khelo</text>\n  <text x='400' y='265' text-anchor='middle' font-size='16' font-weight='bold' fill='white'>India</text>\n\n  <!-- 12 verticals (simplified to 8 major ones) -->\n  <!-- Top -->\n  <rect x='320' y='50' width='160' height='50' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='400' y='70' text-anchor='middle' font-size='11' font-weight='bold'>1. Play Field</text>\n  <text x='400' y='88' text-anchor='middle' font-size='10'>Infrastructure</text>\n  <line x1='400' y1='100' x2='400' y2='190' stroke='#27ae60' stroke-width='2' stroke-dasharray='5,3'/>\n\n  <!-- Top Right -->\n  <rect x='550' y='100' width='160' height='50' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='630' y='120' text-anchor='middle' font-size='11' font-weight='bold'>2. Talent Search</text>\n  <text x='630' y='138' text-anchor='middle' font-size='10'>&amp; Development</text>\n  <line x1='550' y1='150' x2='460' y2='210' stroke='#e74c3c' stroke-width='2' stroke-dasharray='5,3'/>\n\n  <!-- Bottom Right -->\n  <rect x='550' y='350' width='160' height='50' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='630' y='370' text-anchor='middle' font-size='11' font-weight='bold'>3. Coach</text>\n  <text x='630' y='388' text-anchor='middle' font-size='10'>Education</text>\n  <line x1='550' y1='350' x2='460' y2='290' stroke='#e67e22' stroke-width='2' stroke-dasharray='5,3'/>\n\n  <!-- Bottom -->\n  <rect x='320' y='400' width='160' height='50' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='400' y='420' text-anchor='middle' font-size='11' font-weight='bold'>4. Annual Sports</text>\n  <text x='400' y='438' text-anchor='middle' font-size='10'>Competitions</text>\n  <line x1='400' y1='400' x2='400' y2='310' stroke='#f1c40f' stroke-width='2' stroke-dasharray='5,3'/>\n\n  <!-- Bottom Left -->\n  <rect x='90' y='350' width='160' height='50' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='170' y='370' text-anchor='middle' font-size='11' font-weight='bold'>5. Community</text>\n  <text x='170' y='388' text-anchor='middle' font-size='10'>Coaching</text>\n  <line x1='170' y1='350' x2='340' y2='290' stroke='#27ae60' stroke-width='2' stroke-dasharray='5,3'/>\n\n  <!-- Top Left -->\n  <rect x='90' y='100' width='160' height='50' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='170' y='120' text-anchor='middle' font-size='11' font-weight='bold'>6. Promotion of</text>\n  <text x='170' y='138' text-anchor='middle' font-size='10'>Rural &amp; Tribal Games</text>\n  <line x1='170' y1='150' x2='340' y2='210' stroke='#e74c3c' stroke-width='2' stroke-dasharray='5,3'/>\n\n  <!-- Additional verticals -->\n  <rect x='30' y='220' width='130' height='50' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='95' y='240' text-anchor='middle' font-size='10' font-weight='bold'>7. Support to</text>\n  <text x='95' y='258' text-anchor='middle' font-size='10'>National Teams</text>\n\n  <rect x='640' y='220' width='130' height='50' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='705' y='240' text-anchor='middle' font-size='10' font-weight='bold'>8. Women in</text>\n  <text x='705' y='258' text-anchor='middle' font-size='10'>Sports</text>\n\n  <text x='400' y='490' text-anchor='middle' font-size='12' font-weight='bold'>Q: Which Khelo India component focuses on identifying young talent from rural areas?</text>\n</svg>\n\nQ: Which Khelo India component focuses specifically on identifying young talent from rural and tribal areas?",
+options: { a: "Play Field Infrastructure", b: "Talent Search & Development", c: "Promotion of Rural & Tribal Games", d: "Women in Sports" },
+correctAnswer: "c",
+explanation: "The 'Promotion of Rural & Tribal Games' vertical focuses on identifying and nurturing talent from rural and tribal communities.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a central circle 'Khelo India' with 8 radiating boxes representing key components: Play Field Infrastructure, Talent Search & Development, Coach Education, Annual Sports Competitions, Community Coaching, Promotion of Rural & Tribal Games, Support to National Teams, Women in Sports. Use different colors for each."
+},
+{
+id: 46,
+section: "Image-Based — Sports Awards Timeline",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450' width='800' height='450'>\n  <rect width='800' height='450' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>Year of Institution — National Sports Awards</text>\n\n  <!-- Timeline line -->\n  <line x1='80' y1='200' x2='720' y2='200' stroke='#333' stroke-width='3' marker-end='url(#arrowBlack)'/>\n\n  <!-- 1961: Arjuna -->\n  <line x1='200' y1='200' x2='200' y2='150' stroke='#27ae60' stroke-width='2'/>\n  <circle cx='200' cy='200' r='8' fill='#27ae60'/>\n  <rect x='140' y='60' width='120' height='80' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='200' y='85' text-anchor='middle' font-size='12' font-weight='bold'>Arjuna Award</text>\n  <text x='200' y='105' text-anchor='middle' font-size='14' font-weight='bold'>1961</text>\n  <text x='200' y='125' text-anchor='middle' font-size='10'>Sportspersons</text>\n\n  <!-- 1985: Dronacharya -->\n  <line x1='400' y1='200' x2='400' y2='150' stroke='#e74c3c' stroke-width='2'/>\n  <circle cx='400' cy='200' r='8' fill='#e74c3c'/>\n  <rect x='340' y='60' width='120' height='80' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='400' y='85' text-anchor='middle' font-size='12' font-weight='bold'>Dronacharya</text>\n  <text x='400' y='105' text-anchor='middle' font-size='14' font-weight='bold'>1985</text>\n  <text x='400' y='125' text-anchor='middle' font-size='10'>Coaches</text>\n\n  <!-- 1991: Khel Ratna (original) -->\n  <line x1='600' y1='200' x2='600' y2='150' stroke='#f1c40f' stroke-width='2'/>\n  <circle cx='600' cy='200' r='8' fill='#f1c40f'/>\n  <rect x='530' y='60' width='140' height='80' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='600' y='85' text-anchor='middle' font-size='11' font-weight='bold'>Rajiv Gandhi</text>\n  <text x='600' y='102' text-anchor='middle' font-size='11' font-weight='bold'>Khel Ratna</text>\n  <text x='600' y='120' text-anchor='middle' font-size='14' font-weight='bold'>1991</text>\n\n  <!-- 2021: Renamed -->\n  <rect x='530' y='250' width='140' height='60' fill='#f1c40f' stroke='#d4ac0d' stroke-width='2' rx='8'/>\n  <text x='600' y='272' text-anchor='middle' font-size='10' font-weight='bold'>Renamed (2021)</text>\n  <text x='600' y='290' text-anchor='middle' font-size='11' font-weight='bold'>Major Dhyan Chand</text>\n  <text x='600' y='305' text-anchor='middle' font-size='10'>Khel Ratna</text>\n  <line x1='600' y1='230' x2='600' y2='250' stroke='#d4ac0d' stroke-width='2' stroke-dasharray='4,4' marker-end='url(#arrowGold)'/>\n\n  <!-- 2002: Dhyan Chand Award -->\n  <line x1='300' y1='200' x2='300' y2='250' stroke='#e67e22' stroke-width='2'/>\n  <circle cx='300' cy='200' r='8' fill='#e67e22'/>\n  <rect x='240' y='260' width='120' height='70' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='300' y='285' text-anchor='middle' font-size='12' font-weight='bold'>Dhyan Chand</text>\n  <text x='300' y='305' text-anchor='middle' font-size='14' font-weight='bold'>2002</text>\n  <text x='300' y='322' text-anchor='middle' font-size='10'>Lifetime Achievement</text>\n\n  <defs>\n    <marker id='arrowBlack' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'>\n      <polygon points='0 0, 10 3.5, 0 7' fill='#333'/>\n    </marker>\n    <marker id='arrowGold' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'>\n      <polygon points='0 0, 10 3.5, 0 7' fill='#d4ac0d'/>\n    </marker>\n  </defs>\n\n  <text x='400' y='440' text-anchor='middle' font-size='12' font-weight='bold'>Q: In which year was the Khel Ratna Award originally instituted (before renaming)?</text>\n</svg>\n\nQ: In which year was the Khel Ratna Award originally instituted before being renamed to Major Dhyan Chand Khel Ratna Award?",
+options: { a: "1961", b: "1985", c: "1991", d: "2002" },
+correctAnswer: "c",
+explanation: "The Khel Ratna Award was instituted in 1991 as the Rajiv Gandhi Khel Ratna Award, renamed in 2021.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a horizontal timeline from 1960 to 2025. Mark: 1961 (Arjuna Award), 1985 (Dronacharya Award), 1991 (Rajiv Gandhi Khel Ratna), 2002 (Dhyan Chand Award), 2021 (Renamed to Major Dhyan Chand Khel Ratna). Use different colors for each award."
+},
+{
+id: 47,
+section: "Image-Based — Yoga Certification Levels",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 750 500' width='750' height='500'>\n  <rect width='750' height='500' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='375' y='30' text-anchor='middle' font-size='18' font-weight='bold' fill='#1a5276'>Yoga Certification Board (YCB) Levels</text>\n\n  <!-- Level 1 (Bottom) -->\n  <rect x='150' y='390' width='450' height='60' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='200' y='415' text-anchor='middle' font-size='16' font-weight='bold' fill='#1e8449'>Level 1</text>\n  <text x='260' y='415' text-anchor='start' font-size='13'>Yoga Wellness Instructor</text>\n  <text x='260' y='435' text-anchor='start' font-size='10'>Basic yoga knowledge, can conduct general wellness sessions</text>\n\n  <!-- Level 2 -->\n  <rect x='200' y='300' width='350' height='60' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='250' y='325' text-anchor='middle' font-size='16' font-weight='bold' fill='#922b21'>Level 2</text>\n  <text x='310' y='325' text-anchor='start' font-size='13'>Yoga Teacher (YT)</text>\n  <text x='310' y='345' text-anchor='start' font-size='10'>Can teach asanas, pranayama, and basic theory</text>\n\n  <!-- Level 3 -->\n  <rect x='250' y='210' width='250' height='60' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='300' y='235' text-anchor='middle' font-size='16' font-weight='bold' fill='#e67e22'>Level 3</text>\n  <text x='360' y='235' text-anchor='start' font-size='13'>Yoga Master (YM)</text>\n  <text x='360' y='255' text-anchor='start' font-size='10'>Advanced practitioner, can train teachers</text>\n\n  <!-- Level 4 (Top) -->\n  <rect x='280' y='120' width='190' height='60' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='330' y='145' text-anchor='middle' font-size='16' font-weight='bold' fill='#7d6608'>Level 4</text>\n  <text x='390' y='145' text-anchor='start' font-size='13'>Yoga Doctor (YD)</text>\n  <text x='390' y='165' text-anchor='start' font-size='10'>Therapeutic application of yoga</text>\n\n  <!-- Arrows -->\n  <line x1='375' y1='390' x2='375' y2='360' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n  <line x1='375' y1='300' x2='375' y2='270' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n  <line x1='375' y1='210' x2='375' y2='180' stroke='#333' stroke-width='2' marker-end='url(#arrowBlack)'/>\n\n  <!-- Side note: Eligibility -->\n  <rect x='30' y='120' width='200' height='150' fill='#fff' stroke='#333' stroke-width='1' rx='8'/>\n  <text x='130' y='145' text-anchor='middle' font-size='12' font-weight='bold'>Eligibility Path</text>\n  <text x='50' y='170' font-size='10'>Level 1: Basic knowledge</text>\n  <text x='50' y='190' font-size='10'>Level 2: Level 1 + 200 hrs</text>\n  <text x='50' y='210' font-size='10'>Level 3: Level 2 + experience</text>\n  <text x='50' y='230' font-size='10'>Level 4: Graduate in Yoga</text>\n  <text x='50' y='250' font-size='10'>or Allied Sciences</text>\n\n  <defs>\n    <marker id='arrowBlack' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'>\n      <polygon points='0 0, 10 3.5, 0 7' fill='#333'/>\n    </marker>\n  </defs>\n\n  <text x='375' y='490' text-anchor='middle' font-size='12' font-weight='bold'>Q: Which YCB level certifies a person to practice yoga therapy for health conditions?</text>\n</svg>\n\nQ: Which YCB level certifies a person to practice yoga therapy for health conditions in a clinical setting?",
+options: { a: "Level 1 (Yoga Wellness Instructor)", b: "Level 2 (Yoga Teacher)", c: "Level 3 (Yoga Master)", d: "Level 4 (Yoga Doctor)" },
+correctAnswer: "d",
+explanation: "Level 4 (Yoga Doctor) certification is for therapeutic application of yoga in clinical settings.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a 4-level pyramid: Level 1 (Yoga Wellness Instructor), Level 2 (Yoga Teacher), Level 3 (Yoga Master), Level 4 (Yoga Doctor). Show increasing expertise upward. Add eligibility requirements for each level."
+},
+{
+id: 48,
+section: "Image-Based — Sports Authority of India Structure",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'>\n  <rect width='800' height='500' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>Sports Authority of India (SAI) Structure</text>\n\n  <!-- Top: SAI HQ -->\n  <rect x='250' y='60' width='300' height='60' fill='#1a5276' stroke='#0d3b5e' stroke-width='2' rx='10'/>\n  <text x='400' y='85' text-anchor='middle' font-size='16' font-weight='bold' fill='white'>Sports Authority of India (SAI)</text>\n  <text x='400' y='105' text-anchor='middle' font-size='12' fill='white'>Headquarters: New Delhi</text>\n\n  <!-- Line down -->\n  <line x1='400' y1='120' x2='400' y2='150' stroke='#333' stroke-width='2'/>\n\n  <!-- Regional Centres -->\n  <rect x='250' y='150' width='300' height='50' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='400' y='170' text-anchor='middle' font-size='14' font-weight='bold' fill='#1e8449'>5 Regional Centres</text>\n  <text x='400' y='190' text-anchor='middle' font-size='11'>Bengaluru, Bhopal, Gandhinagar, Kolkata, Sonepat</text>\n\n  <!-- Line down -->\n  <line x1='400' y1='200' x2='400' y2='230' stroke='#333' stroke-width='2'/>\n\n  <!-- Sub-Centres (horizontal spread) -->\n  <rect x='50' y='230' width='160' height='50' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='130' y='250' text-anchor='middle' font-size='12' font-weight='bold'>NIS Patiala</text>\n  <text x='130' y='268' text-anchor='middle' font-size='10'>Coaching Education</text>\n\n  <rect x='240' y='230' width='160' height='50' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='320' y='250' text-anchor='middle' font-size='12' font-weight='bold'>LNCPE, Thiruvananthapuram</text>\n  <text x='320' y='268' text-anchor='middle' font-size='10'>Sports Sciences</text>\n\n  <rect x='430' y='230' width='160' height='50' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='510' y='250' text-anchor='middle' font-size='12' font-weight='bold'>SAI Training Centres</text>\n  <text x='510' y='268' text-anchor='middle' font-size='10'>Across 30+ locations</text>\n\n  <rect x='620' y='230' width='160' height='50' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='700' y='250' text-anchor='middle' font-size='12' font-weight='bold'>Sports Hostels</text>\n  <text x='700' y='268' text-anchor='middle' font-size='10'>Residential training</text>\n\n  <!-- Key Programmes below -->\n  <rect x='100' y='320' width='600' height='80' fill='#fff' stroke='#333' stroke-width='1' rx='8'/>\n  <text x='400' y='345' text-anchor='middle' font-size='14' font-weight='bold'>Key Programmes under SAI</text>\n  <text x='400' y='370' text-anchor='middle' font-size='12'>Khelo India | TOPS | National Sports Development Fund | SAI Training Centres</text>\n  <text x='400' y='390' text-anchor='middle' font-size='11'>Scholarships | National Coaching Academy | Sports Infrastructure</text>\n\n  <text x='400' y='490' text-anchor='middle' font-size='12' font-weight='bold'>Q: Which SAI institution is known as the premier coaching education institute in India?</text>\n</svg>\n\nQ: Which SAI institution is known as the premier coaching education institute in India?",
+options: { a: "LNCPE Thiruvananthapuram", b: "NIS Patiala", c: "SAI Bangalore", d: "SAI Gandhinagar" },
+correctAnswer: "b",
+explanation: "NIS Patiala (Netaji Subhas National Institute of Sports) is the premier institute for sports coaching education in India.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw an organizational chart: Top - SAI HQ (New Delhi). Below - 5 Regional Centres (Bengaluru, Bhopal, Gandhinagar, Kolkata, Sonepat). Below - Sub-centres: NIS Patiala, LNCPE Thiruvananthapuram, SAI Training Centres, Sports Hostels. Include key programmes: Khelo India, TOPS."
+},
+{
+id: 49,
+section: "Image-Based — Career Options in Sports",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500' width='800' height='500'>\n  <rect width='800' height='500' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>Career Options in Sports &amp; Physical Education</text>\n\n  <!-- Central figure -->\n  <circle cx='400' cy='180' r='50' fill='#1a5276'/>\n  <text x='400' y='175' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>Sports &amp;</text>\n  <text x='400' y='195' text-anchor='middle' font-size='14' font-weight='bold' fill='white'>PE Careers</text>\n\n  <!-- Radiating boxes (8 sectors) -->\n  <!-- Teaching -->\n  <rect x='30' y='60' width='140' height='70' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='100' y='85' text-anchor='middle' font-size='12' font-weight='bold'>Teaching</text>\n  <text x='100' y='105' text-anchor='middle' font-size='10'>PET, Lecturer</text>\n  <text x='100' y='120' text-anchor='middle' font-size='10'>Professor</text>\n\n  <!-- Coaching -->\n  <rect x='220' y='30' width='140' height='70' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='290' y='55' text-anchor='middle' font-size='12' font-weight='bold'>Coaching</text>\n  <text x='290' y='75' text-anchor='middle' font-size='10'>Sports Coach</text>\n  <text x='290' y='90' text-anchor='middle' font-size='10'>Trainer</text>\n\n  <!-- Fitness -->\n  <rect x='440' y='30' width='140' height='70' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='510' y='55' text-anchor='middle' font-size='12' font-weight='bold'>Fitness</text>\n  <text x='510' y='75' text-anchor='middle' font-size='10'>Fitness Trainer</text>\n  <text x='510' y='90' text-anchor='middle' font-size='10'>Gym Instructor</text>\n\n  <!-- Administration -->\n  <rect x='630' y='60' width='140' height='70' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='700' y='85' text-anchor='middle' font-size='12' font-weight='bold'>Administration</text>\n  <text x='700' y='105' text-anchor='middle' font-size='10'>Sports Director</text>\n  <text x='700' y='120' text-anchor='middle' font-size='10'>Event Manager</text>\n\n  <!-- Medicine -->\n  <rect x='630' y='300' width='140' height='70' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='700' y='325' text-anchor='middle' font-size='12' font-weight='bold'>Medicine</text>\n  <text x='700' y='345' text-anchor='middle' font-size='10'>Sports Physio</text>\n  <text x='700' y='360' text-anchor='middle' font-size='10'>Sports Doctor</text>\n\n  <!-- Journalism -->\n  <rect x='440' y='400' width='140' height='70' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='510' y='425' text-anchor='middle' font-size='12' font-weight='bold'>Journalism</text>\n  <text x='510' y='445' text-anchor='middle' font-size='10'>Sports Journalist</text>\n  <text x='510' y='460' text-anchor='middle' font-size='10'>Commentator</text>\n\n  <!-- Yoga -->\n  <rect x='220' y='400' width='140' height='70' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='290' y='425' text-anchor='middle' font-size='12' font-weight='bold'>Yoga</text>\n  <text x='290' y='445' text-anchor='middle' font-size='10'>Yoga Instructor</text>\n  <text x='290' y='460' text-anchor='middle' font-size='10'>Yoga Therapist</text>\n\n  <!-- Research -->\n  <rect x='30' y='300' width='140' height='70' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='100' y='325' text-anchor='middle' font-size='12' font-weight='bold'>Research</text>\n  <text x='100' y='345' text-anchor='middle' font-size='10'>Sports Scientist</text>\n  <text x='100' y='360' text-anchor='middle' font-size='10'>Biomechanist</text>\n\n  <!-- Connectors -->\n  <line x1='170' y1='130' x2='350' y2='150' stroke='#27ae60' stroke-width='1.5' stroke-dasharray='4,3'/>\n  <line x1='360' y1='100' x2='440' y2='100' stroke='#e74c3c' stroke-width='1.5' stroke-dasharray='4,3'/>\n  <line x1='580' y1='100' x2='630' y2='130' stroke='#e67e22' stroke-width='1.5' stroke-dasharray='4,3'/>\n  <line x1='630' y1='250' x2='580' y2='300' stroke='#27ae60' stroke-width='1.5' stroke-dasharray='4,3'/>\n  <line x1='440' y1='400' x2='360' y2='400' stroke='#e74c3c' stroke-width='1.5' stroke-dasharray='4,3'/>\n  <line x1='170' y1='370' x2='350' y2='350' stroke='#e67e22' stroke-width='1.5' stroke-dasharray='4,3'/>\n\n  <text x='400' y='490' text-anchor='middle' font-size='12' font-weight='bold'>Q: Which career option involves diagnosing and treating sports injuries?</text>\n</svg>\n\nQ: Which career option shown in the diagram involves diagnosing and treating sports injuries?",
+options: { a: "Teaching", b: "Fitness", c: "Medicine (Sports Physio/Doctor)", d: "Journalism" },
+correctAnswer: "c",
+explanation: "Sports Medicine careers (Sports Physiotherapist, Sports Doctor) involve diagnosis, treatment, and rehabilitation of sports injuries.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a central circle 'Sports & PE Careers' with 8 radiating sectors: Teaching, Coaching, Fitness, Administration, Medicine (Physio/Doctor), Journalism, Yoga, Research. Use different colors for each. Add brief job titles in each sector."
+},
+{
+id: 50,
+section: "Image-Based — TOPS (Target Olympic Podium Scheme)",
+text: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 480' width='800' height='480'>\n  <rect width='800' height='480' fill='#f4f6f7' stroke='#333' stroke-width='2'/>\n  <text x='400' y='30' text-anchor='middle' font-size='20' font-weight='bold' fill='#1a5276'>Target Olympic Podium Scheme (TOPS)</text>\n\n  <!-- Core circle -->\n  <circle cx='400' cy='220' r='70' fill='#1a5276'/>\n  <text x='400' y='210' text-anchor='middle' font-size='16' font-weight='bold' fill='white'>TOPS</text>\n  <text x='400' y='235' text-anchor='middle' font-size='11' fill='white'>Target Olympic</text>\n  <text x='400' y='250' text-anchor='middle' font-size='11' fill='white'>Podium Scheme</text>\n\n  <!-- 5 key features around -->\n  <!-- Top -->\n  <rect x='300' y='40' width='200' height='60' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='400' y='60' text-anchor='middle' font-size='12' font-weight='bold'>Selection of Athletes</text>\n  <text x='400' y='80' text-anchor='middle' font-size='10'>Based on potential for Olympic medal</text>\n\n  <!-- Right -->\n  <rect x='600' y='170' width='170' height='60' fill='#fadbd8' stroke='#e74c3c' stroke-width='2' rx='8'/>\n  <text x='685' y='190' text-anchor='middle' font-size='12' font-weight='bold'>Financial Support</text>\n  <text x='685' y='210' text-anchor='middle' font-size='10'>Training, equipment, competition</text>\n\n  <!-- Bottom Right -->\n  <rect x='550' y='330' width='200' height='60' fill='#fdebd0' stroke='#e67e22' stroke-width='2' rx='8'/>\n  <text x='650' y='350' text-anchor='middle' font-size='12' font-weight='bold'>Foreign Exposure</text>\n  <text x='650' y='370' text-anchor='middle' font-size='10'>International training &amp; competitions</text>\n\n  <!-- Bottom Left -->\n  <rect x='50' y='330' width='200' height='60' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='150' y='350' text-anchor='middle' font-size='12' font-weight='bold'>Foreign Coaches</text>\n  <text x='150' y='370' text-anchor='middle' font-size='10'>Hiring of expert foreign coaches</text>\n\n  <!-- Left -->\n  <rect x='30' y='170' width='170' height='60' fill='#d5f5e3' stroke='#27ae60' stroke-width='2' rx='8'/>\n  <text x='115' y='190' text-anchor='middle' font-size='12' font-weight='bold'>Scientific Support</text>\n  <text x='115' y='210' text-anchor='middle' font-size='10'>Sports science, medicine, nutrition</text>\n\n  <!-- Connecting lines -->\n  <line x1='400' y1='110' x2='400' y2='150' stroke='#27ae60' stroke-width='2'/>\n  <line x1='400' y1='290' x2='400' y2='330' stroke='#f1c40f' stroke-width='2'/>\n  <line x1='400' y1='290' x2='550' y2='330' stroke='#e67e22' stroke-width='2'/>\n  <line x1='400' y1='290' x2='250' y2='330' stroke='#f9e79f' stroke-width='2'/>\n  <line x1='470' y1='220' x2='600' y2='200' stroke='#e74c3c' stroke-width='2'/>\n  <line x1='330' y1='220' x2='200' y2='200' stroke='#27ae60' stroke-width='2'/>\n\n  <!-- Note -->\n  <rect x='200' y='420' width='400' height='40' fill='#f9e79f' stroke='#f1c40f' stroke-width='2' rx='8'/>\n  <text x='400' y='438' text-anchor='middle' font-size='12' font-weight='bold'>Launched in 2014 | Ministry of Youth Affairs &amp; Sports | SAI implements</text>\n  <text x='400' y='455' text-anchor='middle' font-size='10'>Core and Development groups | Quarterly reviews | Performance-based continuation</text>\n\n  <text x='400' y='475' text-anchor='middle' font-size='12' font-weight='bold'>Q: What is the primary objective of the TOPS scheme?</text>\n</svg>\n\nQ: What is the primary objective of the Target Olympic Podium Scheme (TOPS)?",
+options: { a: "Grassroots sports development", b: "Identify and support potential Olympic medal winners", c: "Build sports infrastructure", d: "Promote traditional sports" },
+correctAnswer: "b",
+explanation: "TOPS aims to identify and support athletes with the potential to win Olympic medals through financial assistance, foreign exposure, and expert coaching.",
+marked: false,
+userAnswer: null,
+imagePrompt: "Draw a central circle 'TOPS' with 5 radiating features: Selection of Athletes (potential for Olympic medal), Financial Support (training/equipment), Foreign Exposure (international training), Foreign Coaches (expert hiring), Scientific Support (sports science/medicine). Include launch year (2014) and implementing agency (SAI)."
+},
+],
+    duration: 60 * 60,
+    markingScheme: { correct: 5, incorrect: -1 }
+};
+
+/* ============================================================
+   CORE TEST ENGINE
+   ============================================================ */
+const timerElement = document.querySelector('.timer');
+const questionTextElement = document.getElementById('question-text');
+const optionsContainer = document.getElementById('options-container');
+const questionNumberElement = document.getElementById('q-number');
+const currentQNumberElement = document.getElementById('current-q-number');
+const progressBar = document.getElementById('test-progress');
+const progressPercent = document.getElementById('progress-percent');
+const questionPaletteGrid = document.getElementById('question-palette-grid');
+const answeredCountElement = document.getElementById('answered-count');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const markBtn = document.getElementById('mark-btn');
+const submitTestBtn = document.getElementById('submit-test-btn');
+const resultsModal = document.getElementById('results-modal');
+const closeModalBtn = document.getElementById('close-modal');
+const correctAnswersElement = document.getElementById('correct-answers');
+const incorrectAnswersElement = document.getElementById('incorrect-answers');
+const unansweredElement = document.getElementById('unanswered');
+const totalScoreElement = document.getElementById('total-score');
+const percentageElement = document.getElementById('percentage');
+const accuracyElement = document.getElementById('accuracy');
+const reviewBtn = document.getElementById('review-btn');
+
+let currentQuestionIndex = 0;
+let timeLeft = mockTest.duration;
+let timer;
+let testSubmitted = false;
+let testStarted = false;
+
+function initTest() {
+    renderQuestionPalette(); renderQuestion(); startTimer(); updateProgress(); renderLegend(false);
+    prevBtn.addEventListener('click', goToPreviousQuestion);
+    nextBtn.addEventListener('click', goToNextQuestion);
+    markBtn.addEventListener('click', toggleMarkForReview);
+    submitTestBtn.addEventListener('click', confirmSubmit);
+    closeModalBtn.addEventListener('click', closeResultsModal);
+    reviewBtn.addEventListener('click', reviewAnswers);
+    document.getElementById('download-pdf-btn').addEventListener('click', generatePDF);
+}
+
+function renderLegend(reviewMode) {
+    const leg = document.getElementById('palette-legend');
+    if (!leg) return;
+    if (reviewMode) {
+        leg.innerHTML = `<div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#22c55e;"></div><span>Correct</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#ef4444;"></div><span>Wrong</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#3b82f6;"></div><span>Not Answered</span></div></div>`;
+    } else {
+        leg.innerHTML = `<div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#ef5350;"></div><span>Answered</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#90D5FF;"></div><span>Marked</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#FF474D;"></div><span>Unanswered</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #c62828;"></div><span>Current</span></div></div>`;
+    }
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timer = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) { clearInterval(timer); submitTest(); }
+        if (timeLeft === 300) { alert('Only 5 minutes remaining!'); }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const h = Math.floor(timeLeft/3600), m = Math.floor((timeLeft%3600)/60), s = timeLeft%60;
+    const str = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    timerElement.textContent = str;
+    const mt = document.querySelector('.mobile-timer-clone');
+    if (mt) mt.textContent = str;
+}
+
+function renderQuestion() {
+    const q = mockTest.questions[currentQuestionIndex];
+    document.getElementById('current-section').textContent = q.section;
+    questionTextElement.innerHTML = `
+        <div style="display:inline-block;background:linear-gradient(135deg,#8e0000,#c62828);color:white;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:8px;letter-spacing:0.5px;">
+            🏋 ${q.section || "General"}
+        </div>
+        ${q.image ? `<div style="margin:10px 0;"><img src="${q.image}" style="max-width:100%;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>` : ""}
+        <div style="margin-top:8px;font-size:17px;line-height:1.6;">${q.text}</div>`;
+    questionNumberElement.textContent = q.id;
+    currentQNumberElement.textContent = q.id;
+    optionsContainer.innerHTML = '';
+    for (const [key, value] of Object.entries(q.options)) {
+        const od = document.createElement('div');
+        od.className = 'option';
+        if (testSubmitted) {
+            if (key === q.correctAnswer) od.classList.add('correct');
+            else if (key === q.userAnswer && key !== q.correctAnswer) od.classList.add('incorrect');
+        } else {
+            if (key === q.userAnswer) od.classList.add('selected');
+        }
+        if (!testSubmitted) {
+            od.addEventListener('click', () => {
+                optionsContainer.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+                od.classList.add('selected');
+                selectAnswer(key);
+            });
+        }
+        const inp = document.createElement('input');
+        inp.type='radio'; inp.name='question-option'; inp.value=key;
+        inp.checked = q.userAnswer === key; inp.disabled = testSubmitted;
+        const ld = document.createElement('div');
+        ld.className='opt-letter'; ld.textContent=key.toUpperCase();
+        const ts = document.createElement('span');
+        ts.className='opt-text'; ts.textContent=value;
+        if (testSubmitted) {
+            if (key === q.correctAnswer) {
+                const ind = document.createElement('span'); ind.className='correct-indicator'; ind.textContent=' ✓ Correct Answer'; ts.appendChild(ind);
+            } else if (key === q.userAnswer && key !== q.correctAnswer) {
+                const ind = document.createElement('span'); ind.className='incorrect-indicator'; ind.textContent=' ✗ Your Answer'; ts.appendChild(ind);
+            }
+        }
+        od.appendChild(inp); od.appendChild(ld); od.appendChild(ts);
+        optionsContainer.appendChild(od);
+    }
+    if (testSubmitted) {
+        const ed = document.createElement('div');
+ed.style.cssText = "margin-top:15px;padding:12px;border-radius:8px;background:linear-gradient(135deg,#edf7f1,#d4eddb);border-left:4px solid #2d8a4e;font-size:15px;";
+        optionsContainer.appendChild(ed);
+    }
+    markBtn.classList.toggle('marked', q.marked);
+    markBtn.textContent = q.marked ? 'Unmark' : 'Mark for Review';
+    prevBtn.style.visibility = currentQuestionIndex === 0 ? 'hidden' : 'visible';
+    nextBtn.style.visibility = currentQuestionIndex === mockTest.questions.length - 1 ? 'hidden' : 'visible';
+    prevBtn.disabled = currentQuestionIndex === 0;
+    nextBtn.disabled = currentQuestionIndex === mockTest.questions.length - 1;
+    updateQuestionPalette();
+}
+
+function selectAnswer(answer) {
+    mockTest.questions[currentQuestionIndex].userAnswer = answer;
+    updateQuestionPalette(); updateProgress();
+}
+
+function toggleMarkForReview() {
+    const q = mockTest.questions[currentQuestionIndex];
+    q.marked = !q.marked;
+    markBtn.classList.toggle('marked', q.marked);
+    markBtn.textContent = q.marked ? 'Unmark' : 'Mark for Review';
+    updateQuestionPalette();
+}
+
+function goToPreviousQuestion() { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } }
+function goToNextQuestion() { if (currentQuestionIndex < mockTest.questions.length - 1) { currentQuestionIndex++; renderQuestion(); } }
+
+function renderQuestionPalette() {
+    questionPaletteGrid.innerHTML = '';
+    mockTest.questions.forEach((q, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'palette-btn'; btn.textContent = q.id;
+        btn.addEventListener('click', () => navigateToQuestion(i));
+        questionPaletteGrid.appendChild(btn);
+    });
+    updateQuestionPalette();
+}
+
+function updateQuestionPalette() {
+    const btns = questionPaletteGrid.querySelectorAll('.palette-btn');
+    btns.forEach(b => { b.className = 'palette-btn'; });
+    mockTest.questions.forEach((q, i) => {
+        const btn = btns[i];
+        if (testSubmitted) {
+            if (!q.userAnswer) btn.classList.add('review-unanswered');
+            else if (q.userAnswer === q.correctAnswer) btn.classList.add('review-correct');
+            else btn.classList.add('review-wrong');
+        } else {
+            if (q.userAnswer) btn.classList.add('answered');
+            if (q.marked) btn.classList.add('marked');
+        }
+        if (i === currentQuestionIndex) btn.classList.add('current');
+    });
+    const ac = mockTest.questions.filter(q => q.userAnswer).length;
+    answeredCountElement.textContent = `${ac}/${mockTest.questions.length}`;
+}
+
+function navigateToQuestion(index) { currentQuestionIndex = index; renderQuestion(); }
+
+function updateProgress() {
+    const ac = mockTest.questions.filter(q => q.userAnswer).length;
+    const p = (ac / mockTest.questions.length) * 100;
+    progressBar.style.width = `${p}%`;
+    progressPercent.textContent = `${Math.round(p)}%`;
+}
+
+function confirmSubmit() { if (confirm('Are you sure you want to submit the test?')) { submitTest(); } }
+
+function submitTest() {
+    if (testSubmitted) return;
+    testSubmitted = true; clearInterval(timer);
+    let correct = 0, incorrect = 0, unanswered = 0;
+    mockTest.questions.forEach(q => {
+        if (!q.userAnswer) unanswered++;
+        else if (q.userAnswer === q.correctAnswer) correct++;
+        else incorrect++;
+    });
+    const totalQ = mockTest.questions.length;
+    const maxScore = totalQ * mockTest.markingScheme.correct;
+    const totalScore = (correct * mockTest.markingScheme.correct) + (incorrect * mockTest.markingScheme.incorrect);
+    const percentage = ((totalScore / maxScore) * 100).toFixed(2);
+    const accuracy = correct + incorrect > 0 ? (correct / (correct + incorrect) * 100).toFixed(2) : '0';
+
+    const questionResults = mockTest.questions.map(q => ({
+        id: q.id, correct: q.userAnswer === q.correctAnswer,
+        answered: !!q.userAnswer, userAnswer: q.userAnswer, correctAnswer: q.correctAnswer
+    }));
+const resultData = {
+    studentId: localStorage.getItem('ts_student_id') || '',
+    name: localStorage.getItem('cbtUserName') || 'Unknown',
+    subject: SUBJECT_ID,
+    chapter: CHAPTER_ID,
+    date: new Date().toISOString(),
+    score: totalScore,
+    maxScore: maxScore,
+    correct: correct,
+    wrong: incorrect,
+    incorrect: incorrect,    // ← ADD THIS
+    skipped: unanswered,
+    unanswered: unanswered,  // ← ADD THIS
+    totalQ: mockTest.questions.length,
+    percentage: parseFloat(percentage),
+    accuracy: parseFloat(accuracy),
+    timeTaken: mockTest.duration - timeLeft,
+    wrongQs: mockTest.questions
+        .map((q, i) => q.userAnswer && q.userAnswer !== q.correctAnswer ? i + 1 : null)
+        .filter(Boolean)     // ← ADD THIS so bookmark system works
+};
+    const storageKey = `thunderstudy_result_${SUBJECT_ID}_${CHAPTER_ID}`;
+    localStorage.setItem(storageKey, JSON.stringify(resultData));
+    const GS_URL = "https://script.google.com/macros/s/AKfycbyEsrvdSuRh06TIKPK0ozP-jQNjqHO8PaIeBcW5r45aGdr4H3ZVFHpKMm3xaDHrYmqX/exec";
+fetch(GS_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain' },
+    body: JSON.stringify(resultData)
+})// In CBT HTML — replace the .then() block:
+.then(() => {
+    // DON'T remove — just mark as synced
+    localStorage.setItem(`thunderstudy_synced_${SUBJECT_ID}_${CHAPTER_ID}`, "true");
+}).catch(err => console.error("Sync failed", err));
+    const indexKey = `thunderstudy_index_${SUBJECT_ID}`;
+    let index = [];
+    try { index = JSON.parse(localStorage.getItem(indexKey) || '[]'); } catch(e) {}
+    if (!index.includes(CHAPTER_ID)) index.push(CHAPTER_ID);
+    localStorage.setItem(indexKey, JSON.stringify(index));
+
+    correctAnswersElement.textContent = correct;
+    incorrectAnswersElement.textContent = incorrect;
+    unansweredElement.textContent = unanswered;
+    totalScoreElement.textContent = totalScore;
+    percentageElement.textContent = percentage;
+    accuracyElement.textContent = accuracy;
+    resultsModal.style.display = 'flex';
+    renderQuestion();
+
+    const sb = document.getElementById('submit-test-btn');
+    sb.textContent = '📄 Download PDF';
+    sb.classList.remove('submit-fancy-btn');
+    sb.classList.add('pdf-download-btn');
+    sb.onclick = generatePDF;
+    renderLegend(true);
+}
+
+function closeResultsModal() { resultsModal.style.display = 'none'; }
+function reviewAnswers() { resultsModal.style.display = 'none'; currentQuestionIndex = 0; renderQuestion(); }
+
+document.addEventListener("visibilitychange", function() {
+    if (!testStarted || testSubmitted) return;
+    if (document.hidden) startCountdown('tab'); else cancelCountdown();
+});
+document.addEventListener('keydown', function(e) {
+    if (document.getElementById('test-screen').style.display === 'none') return;
+    if (e.key==='ArrowRight'||e.key==='ArrowDown') { if (currentQuestionIndex < mockTest.questions.length-1) { currentQuestionIndex++; renderQuestion(); } }
+    else if (e.key==='ArrowLeft'||e.key==='ArrowUp') { if (currentQuestionIndex > 0) { currentQuestionIndex--; renderQuestion(); } }
+});
+</script>
+
+<script>
+  function updateFocusMode() {
+    const color = (document.hidden || !isInFullscreen()) ? "#FF474D" : "#90EE90";
+    const text = (document.hidden || !isInFullscreen()) ? "● Disturbed" : "● Focus On";
+    const els = [document.getElementById('focus-laptop'), document.getElementById('focus-mobile')];
+    els.forEach(el => { if(el) { el.style.color = color; el.innerText = text; }});
+}
+function startMock() {
+    const savedName = localStorage.getItem('cbtUserName') || '';
+    const savedSID = localStorage.getItem('ts_student_id') || '';
+    const inputName = document.getElementById('username-input').value.trim();
+
+    if (!savedName && !inputName) {
+        alert("⚠️ Please enter your name to continue!");
+        document.getElementById('username-input').focus();
+        return;
+    }
+    if (!savedName && inputName) {
+        localStorage.setItem("cbtUserName", inputName);
+    }
+    if (!savedSID) {
+        const goToDash = confirm("⚠️ Student ID not found!\n\nYou must have a Student ID to start the mock.\n\nClick OK to open Dashboard to generate one, or Cancel to stay here.");
+        if (goToDash) window.open('https://commercesehoga.github.io/dashboard/', '_blank');
+        return;
+    }
+    enterFullscreen();
+    document.getElementById('start-screen').style.display = 'none';
+    document.getElementById('instruction-screen').style.display = 'block';
+}
+
+const darkModeToggles = document.querySelectorAll('#dark-mode-toggle-bottom');
+darkModeToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        darkModeToggles.forEach(btn => {
+            const iconSpan = btn.querySelector('.icon');
+            if (iconSpan) iconSpan.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+    });
+});
+
+const checkbox = document.getElementById('agree-checkbox');
+const startBtn = document.getElementById('start-test-btn');
+checkbox.addEventListener('change', () => {
+    startBtn.disabled = !checkbox.checked;
+    startBtn.style.opacity = checkbox.checked ? "1" : "0.6";
+    startBtn.style.cursor = checkbox.checked ? "pointer" : "not-allowed";
+});
+startBtn.addEventListener('click', () => {
+    if (!checkbox.checked) { alert("Please accept instructions first!"); return; }
+    document.getElementById('instruction-screen').style.display = 'none';
+    document.getElementById('test-screen').style.display = 'block';
+    const name = localStorage.getItem("cbtUserName") || "Thunder";
+    document.getElementById('user-name-display').innerText = "👤 " + name;
+    const mn = document.getElementById('mobile-name-display');
+    if (mn) mn.innerText = "👤 " + name;
+    const sid = localStorage.getItem("ts_student_id") || "N/A";
+if(document.getElementById('display-user-sid')) document.getElementById('display-user-sid').innerText = sid;
+    testStarted = true; enterFullscreen(); initTest();
+});
+
+function enterFullscreen() {
+    const el = document.documentElement;
+    try {
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+    } catch(e) {}
+}
+
+document.addEventListener('fullscreenchange', onFSChange);
+document.addEventListener('webkitfullscreenchange', onFSChange);
+document.addEventListener('mozfullscreenchange', onFSChange);
+document.addEventListener('MSFullscreenChange', onFSChange);
+
+function isInFullscreen() {
+    return !!(document.fullscreenElement||document.webkitFullscreenElement||document.mozFullScreenElement||document.msFullscreenElement);
+}
+function onFSChange() {
+    if (!testStarted||testSubmitted) return;
+    if (document.getElementById('test-screen').style.display==='none') return;
+    if (!isInFullscreen()) startCountdown('fullscreen'); else cancelCountdown();
+}
+
+let countdownTimer = null, countdownSeconds = 0;
+function startCountdown(reason) {
+    if (!testStarted||testSubmitted) return;
+    if (countdownTimer) return;
+    countdownSeconds = (reason==='tab') ? 2 : 5;
+    const msg = (reason==='tab') ? '⚠️ You switched tabs!' : '⚠️ You exited fullscreen!';
+    const hint = (reason==='tab') ? 'Switch back to this tab to cancel.' : 'Click the button below to return to fullscreen.';
+    showOverlay(msg, hint, countdownSeconds, reason==='fullscreen');
+    countdownTimer = setInterval(() => {
+        countdownSeconds--;
+        updateOverlayCount(countdownSeconds);
+        if (countdownSeconds <= 0) { cancelCountdown(); submitTest(); }
+    }, 1000);
+}
+function cancelCountdown() { if (countdownTimer) { clearInterval(countdownTimer); countdownTimer=null; } hideOverlay(); }
+function showOverlay(msg, hint, secs, showBtn) {
+    let ov = document.getElementById('security-overlay');
+    if (!ov) {
+        ov = document.createElement('div'); ov.id = 'security-overlay';
+        ov.style.cssText = `position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,20,5,0.92);z-index:999999;display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:'DM Sans',sans-serif;color:#fff;text-align:center;padding:24px;`;
+        document.body.appendChild(ov);
+    }
+    ov.innerHTML = `<div style="font-size:60px;margin-bottom:14px;">🚨</div>
+        <div style="font-size:22px;font-weight:800;margin-bottom:8px;">${msg}</div>
+        <div style="font-size:15px;color:#ef9a9a;margin-bottom:20px;">${hint}</div>
+        <div style="font-size:16px;color:#d4edd9;margin-bottom:6px;">Auto-submitting in</div>
+        <div id="overlay-count" style="font-size:72px;font-weight:900;color:#f87171;line-height:1;">${secs}</div>
+        <div style="font-size:14px;color:#9ca3af;margin-top:4px;">seconds</div>
+        ${showBtn ? `<button onclick="enterFullscreen()" style="margin-top:24px;padding:13px 34px;border-radius:30px;border:none;background:linear-gradient(135deg,#c62828,#8e0000);color:#fff;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(198,40,40,0.5);">🔲 Return to Fullscreen</button>` : ''}`;
+    ov.style.display = 'flex';
+}
+function updateOverlayCount(n) { const el=document.getElementById('overlay-count'); if(el) el.textContent=n; }
+function hideOverlay() { const ov=document.getElementById('security-overlay'); if(ov) ov.style.display='none'; }
+</script>
+
+<div id="pdf-print-area"></div>
+<script>
+function generatePDF() {
+    const name = localStorage.getItem('cbtUserName') || 'Thunder';
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});
+    const timeStr = now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    let correct=0,incorrect=0,unanswered=0;
+    mockTest.questions.forEach(q => {
+        if (!q.userAnswer) unanswered++; else if (q.userAnswer===q.correctAnswer) correct++; else incorrect++;
+    });
+    const totalScore = (correct*mockTest.markingScheme.correct)+(incorrect*mockTest.markingScheme.incorrect);
+    const maxScore = mockTest.questions.length*mockTest.markingScheme.correct;
+    const pct = ((totalScore/maxScore)*100).toFixed(1);
+    const optionLabel = {a:'A',b:'B',c:'C',d:'D'};
+    let questionsHTML = '';
+    mockTest.questions.forEach((q,i) => {
+        const isCorrect = q.userAnswer===q.correctAnswer;
+        const isWrong = q.userAnswer&&!isCorrect;
+        const isSkipped = !q.userAnswer;
+        const statusColor = isCorrect?'#16a34a':isWrong?'#dc2626':'#9ca3af';
+        const statusLabel = isCorrect?'✓ Correct':isWrong?'✗ Wrong':'— Skipped';
+        const rowBg = isCorrect?'#f0fdf4':isWrong?'#fef2f2':'#fafafa';
+        let optionsHTML = '';
+        for (const [key,val] of Object.entries(q.options)) {
+            const isRight=key===q.correctAnswer, isUser=key===q.userAnswer;
+            let bg='transparent',fw='normal',prefix='';
+            if(isRight){bg='#dcfce7';fw='bold';prefix='✓ ';}
+            if(isUser&&!isRight){bg='#fee2e2';fw='bold';prefix='✗ ';}
+            optionsHTML+=`<div style="display:flex;gap:8px;padding:4px 8px;margin:2px 0;border-radius:4px;background:${bg};font-weight:${fw};font-size:12px;"><span style="min-width:18px;font-weight:700;">${optionLabel[key]}.</span><span>${prefix}${val}</span></div>`;
+        }
+        let yourAnswer = isSkipped
+            ? '<span style="color:#9ca3af;">Not Attempted</span>'
+            : `<span style="color:${isCorrect?'#16a34a':'#dc2626'};font-weight:bold;">${optionLabel[q.userAnswer]}. ${q.options[q.userAnswer]}</span>`;
+        questionsHTML+=`<div style="margin-bottom:18px;padding:14px 16px;border-radius:8px;background:${rowBg};border:1px solid #e5e7eb;page-break-inside:avoid;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                <div style="font-weight:700;font-size:13px;color:#374151;">Q${i+1}. ${q.text}</div>
+                <div style="font-weight:700;font-size:12px;color:${statusColor};white-space:nowrap;margin-left:12px;">${statusLabel}</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:8px;">${optionsHTML}</div>
+            <div style="font-size:12px;border-top:1px solid #e5e7eb;padding-top:6px;margin-top:4px;">
+                <span style="color:#6b7280;">Your answer: </span>${yourAnswer}&nbsp;&nbsp;
+                <span style="color:#6b7280;">Correct: </span><span style="color:#16a34a;font-weight:bold;">${optionLabel[q.correctAnswer]}. ${q.options[q.correctAnswer]}</span>
+            </div></div>`;
+    });
+    const scoreColor = pct>=60?'#16a34a':pct>=35?'#d97706':'#dc2626';
+    const html = `<div style="max-width:780px;margin:0 auto;font-family:Arial,sans-serif;color:#111;">
+        <div style="background:linear-gradient(135deg,#8e0000,#c62828);color:white;padding:20px 24px;border-radius:10px 10px 0 0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                <div><div style="font-size:22px;font-weight:800;">⚡ Thunderstudy CBT — physical education</div><div style="font-size:13px;opacity:0.85;margin-top:3px;">Result Report — ${CHAPTER_ID.toUpperCase()}</div></div>
+                <div style="text-align:right;font-size:12px;opacity:0.85;"><div>📅 ${dateStr} 🕐 ${timeStr}</div><div>👤 ${name}</div></div>
+            </div>
+        </div>
+        <div style="background:#f0fdf4;border:1px solid #ffcdd2;border-top:none;padding:16px 24px;border-radius:0 0 10px 10px;margin-bottom:20px;">
+            <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;">
+                <div style="background:white;border:1px solid #ffcdd2;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">SCORE</div><div style="font-size:24px;font-weight:800;color:${scoreColor};">${totalScore}<span style="font-size:14px;color:#6b7280;">/${maxScore}</span></div></div>
+                <div style="background:white;border:1px solid #ffcdd2;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">PERCENTAGE</div><div style="font-size:24px;font-weight:800;color:${scoreColor};">${pct}%</div></div>
+                <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#16a34a;">CORRECT</div><div style="font-size:24px;font-weight:800;color:#16a34a;">${correct}</div></div>
+                <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#dc2626;">WRONG</div><div style="font-size:24px;font-weight:800;color:#dc2626;">${incorrect}</div></div>
+                <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:8px;padding:10px 18px;text-align:center;"><div style="font-size:11px;color:#6b7280;">SKIPPED</div><div style="font-size:24px;font-weight:800;color:#6b7280;">${unanswered}</div></div>
+            </div>
+        </div>
+        <div style="font-size:15px;font-weight:700;color:#374151;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #c62828;">📋 Question-wise Answer Key</div>
+        ${questionsHTML}
+        <div style="text-align:center;margin-top:24px;padding:14px;background:#f0fdf4;border-radius:8px;font-size:12px;color:#6b7280;">Generated by <b>Thunderstudy CBT</b> | t.me/thunderstudy_official | ${dateStr}</div>
+    </div>`;
+    const printWin = window.open('','_blank','width=950,height=700,scrollbars=yes');
+    if (!printWin) { alert('Popup blocked! Please allow popups and try again.'); return; }
+    printWin.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"/><title>Thunderstudy_PolSci_${name}_${dateStr.replace(/ /g,'-')}</title>
+    <style>*{box-sizing:border-box;margin:0;padding:0;}body{font-family:Arial,sans-serif;background:#fff;padding:20px;}@media print{body{padding:0;}.no-print{display:none !important;}}.print-btn{display:block;margin:0 auto 20px;padding:12px 36px;background:linear-gradient(135deg,#8e0000,#c62828);color:white;font-size:16px;font-weight:700;border:none;border-radius:30px;cursor:pointer;}</style>
+    </head><body><button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save as PDF</button>${html}</body></html>`);
+    printWin.document.close(); printWin.focus();
+}
+window.addEventListener('DOMContentLoaded', () => {
+    const savedName = localStorage.getItem('cbtUserName') || '';
+    const savedSID = localStorage.getItem('ts_student_id') || '';
+    if (savedName) {
+        const inp = document.getElementById('username-input');
+        if (inp) {
+            inp.value = savedName;
+            inp.style.background = 'rgba(142,0,0,0.07)';
+            inp.style.borderColor = '#c62828';
+            inp.style.color = '#8e0000';
+            inp.style.fontWeight = 'bold';
+            inp.setAttribute('readonly', true);
+            inp.insertAdjacentHTML('afterend',
+                `<div style="font-size:11px;color:#c62828;font-weight:700;margin-top:5px;">✅ Verified Dashboard Profile</div>`
+            );
+        }
+    }
+    if (savedSID) {
+        const sidArea = document.getElementById('sid-display-area');
+        const sidVal = document.getElementById('sid-value');
+        if (sidArea && sidVal) { sidArea.style.display = 'block'; sidVal.textContent = savedSID; }
+    }
+});
+</script>
+
+</body>
+</html>
