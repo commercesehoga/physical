@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PE Syllabus 2023/2024 Update | MindMaster Robot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f0ff 0%, #c2e0ff 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Main card: light blue & white theme */
+        .syllabus-card {
+            max-width: 860px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 30px 50px -20px rgba(0, 70, 100, 0.35), 0 8px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.25s ease;
+        }
+
+        .syllabus-card:hover {
+            transform: translateY(-4px);
+        }
+
+        /* top accent bar */
+        .accent-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #6ab0f5, #b8d9ff, #3b8fd9);
+        }
+
+        /* header section */
+        .card-header {
+            padding: 2rem 2rem 0.8rem 2rem;
+            background: white;
+        }
+
+        .badge-wrapper {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .year-badge {
+            background: #e6f2fc;
+            color: #1a5d8f;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .year-badge.light {
+            background: #f0f6fe;
+        }
+
+        .alert-chip {
+            background: #ffecdc;
+            color: #bc5a1c;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+        }
+
+        .card-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #0c3e5c;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-sub {
+            font-size: 1rem;
+            color: #2c6a91;
+            border-left: 4px solid #6ab0f5;
+            padding-left: 1rem;
+            margin-top: 0.3rem;
+            font-weight: 500;
+        }
+
+        /* main content */
+        .card-content {
+            padding: 1.2rem 2rem 2rem 2rem;
+        }
+
+        /* notice box : full change warning */
+        .change-notice {
+            background: #f5faff;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #cde5fc;
+            box-shadow: 0 6px 12px -8px rgba(0, 60, 90, 0.08);
+        }
+
+        .warning-header {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .warning-icon {
+            background: #dceeff;
+            width: 52px;
+            height: 52px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.9rem;
+        }
+
+        .warning-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #004070;
+        }
+
+        .warning-sub {
+            font-size: 0.95rem;
+            color: #336f97;
+            margin-top: 0.2rem;
+        }
+
+        .full-change-desc {
+            margin-top: 1rem;
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            border-left: 4px solid #3f9eff;
+        }
+
+        .full-change-desc p {
+            color: #1a4b6e;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .diff-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .diff-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: #1a5780;
+        }
+
+        .diff-marker {
+            background: #e1f0fe;
+            width: 26px;
+            height: 26px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* mock not available section */
+        .mock-unavailable {
+            background: #eef4fa;
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.8rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #cde0f0;
+        }
+
+        .mock-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .mock-header h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0b4e72;
+        }
+
+        .mock-note {
+            background: white;
+            border-radius: 1rem;
+            padding: 0.9rem 1.2rem;
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+            color: #2b5e84;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        /* telegram cta block */
+        .telegram-box {
+            background: linear-gradient(115deg, #ffffff, #f3f9ff);
+            border-radius: 1.8rem;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid #bbd9ff;
+            margin-top: 0.5rem;
+        }
+
+        .telegram-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #0a4e73;
+            margin-bottom: 0.5rem;
+        }
+
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #e3f0ff;
+            padding: 0.8rem 1.4rem;
+            border-radius: 60px;
+            margin: 1rem 0 0.8rem 0;
+            transition: all 0.2s;
+            text-decoration: none;
+            flex-wrap: wrap;
+        }
+
+        .telegram-link:hover {
+            background: #cde2fa;
+            transform: scale(1.01);
+        }
+
+        .tg-url {
+            font-family: 'SF Mono', monospace;
+            font-weight: 600;
+            color: #005b8f;
+            font-size: 1rem;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-copy {
+            background: white;
+            border: 1px solid #9ec3e6;
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1f6392;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-copy:hover {
+            background: #eef3fc;
+            border-color: #5f9ed4;
+        }
+
+        .instruction-note {
+            font-size: 0.9rem;
+            color: #2c668b;
+            background: #e9f2fc;
+            padding: 0.7rem 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footnote-meta {
+            margin-top: 1.8rem;
+            font-size: 0.7rem;
+            text-align: center;
+            color: #5e8aa8;
+            border-top: 1px solid #d9eaff;
+            padding-top: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .card-header h1 {
+                font-size: 1.6rem;
+            }
+            .card-content {
+                padding: 1rem 1.3rem 1.8rem 1.3rem;
+            }
+            .warning-title {
+                font-size: 1.2rem;
+            }
+            .telegram-title {
+                font-size: 1.1rem;
+            }
+            .tg-url {
+                font-size: 0.85rem;
+                word-break: break-all;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="syllabus-card">
+    <div class="accent-bar"></div>
+    <div class="card-header">
+        <div class="badge-wrapper">
+            <span class="year-badge">📘 PE 2023 Syllabus</span>
+            <span class="year-badge light">📗 PE 2024 Syllabus</span>
+            <span class="alert-chip">⚠️ FULL REVISION</span>
+        </div>
+        <h1>Physical Education<br><span style="color:#2c7eb6;">2023 ⇄ 2024</span></h1>
+        <div class="header-sub">Complete syllabus restructuring — no shared framework</div>
+    </div>
+
+    <div class="card-content">
+        <!-- Main reason: syllabus full change -->
+        <div class="change-notice">
+            <div class="warning-header">
+                <div class="warning-icon">📚⚡</div>
+                <div>
+                    <div class="warning-title">2023 & 2024 syllabus are fully different</div>
+                    <div class="warning-sub">Entirely new curriculum, learning outcomes & evaluation pattern</div>
+                </div>
+            </div>
+            <div class="full-change-desc">
+                <p>Due to a <strong>complete educational overhaul</strong>, the Physical Education syllabus for 2023 and 2024 does <strong>not</strong> share the same structure, units, or assessment criteria. The 2024 version includes updated health sciences, new practical modules, and revised theoretical frameworks — making previous mock papers incompatible.</p>
+                <div class="diff-list">
+                    <div class="diff-item"><span class="diff-marker">📌</span> <span><strong>2023:</strong> Competency-based grading + traditional fitness units</span></div>
+                    <div class="diff-item"><span class="diff-marker">📌</span> <span><strong>2024:</strong> Integrated wellness approach + digital tracking modules</span></div>
+                    <div class="diff-item"><span class="diff-marker">📌</span> <span>Mock tests and past papers from 2023 & 2024 are <strong>invalid</strong> for 2026 preparation</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mock not available because of full change -->
+        <div class="mock-unavailable">
+            <div class="mock-header">
+                <span style="font-size: 1.9rem;">📋❌</span>
+                <h3>Mock papers & previous resources not available</h3>
+            </div>
+            <div class="mock-note">
+                Since the 2023 and 2024 syllabuses are <strong>entirely different</strong>, previous mock exams, question banks, and combined PDFs are obsolete. Neither the 2023 mock set nor 2024 draft papers are publicly bundled here — to avoid confusion and incorrect preparation.
+            </div>
+        </div>
+
+        <!-- Telegram solution : request PDF to solve -->
+        <div class="telegram-box">
+            <div class="telegram-title">
+                <span>🤖📄</span> 
+                <span>Need the correct PDF? → Message on Telegram</span>
+            </div>
+            <p style="margin-bottom: 0.6rem; color: #1b628d;">Get the official 2023 or 2024 syllabus PDF directly from the bot. Because both versions differ completely, specify your year and the robot will provide the right material.</p>
+            
+            <!-- clickable telegram link + copy option -->
+            <a href="https://t.me/mindmaster_robot" target="_blank" rel="noopener noreferrer" class="telegram-link" style="text-decoration: none;">
+                <span style="font-size: 1.4rem;">📲</span>
+                <span class="tg-url">https://t.me/mindmaster_robot</span>
+                <span style="background:#ffffffb3; padding: 4px 12px; border-radius: 30px; font-size: 0.7rem; font-weight:500;">@mindmaster_robot</span>
+                <span style="font-size:0.8rem;">🔗 open in Telegram</span>
+            </a>
+            
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 0.25rem;">
+                <button class="btn-copy" id="copyTelegramLinkBtn">📋 Copy Telegram link</button>
+                <button class="btn-copy" id="copyUsernameOnlyBtn">🧾 Copy @username</button>
+            </div>
+
+            <div class="instruction-note">
+                <span>💬</span> 
+                <span><strong>How to request:</strong> Message <strong>@mindmaster_robot</strong> → type <em>"Need PE 2023 syllabus PDF"</em> or <em>"2024 PE full syllabus"</em>. The bot will share the exact version (since mocks are not available, the PDF helps to solve and understand the new pattern).</span>
+            </div>
+        </div>
+        
+        <div class="footnote-meta">
+            ⚡ Important: 2023 & 2024 Physical Education syllabuses are completely restructured → mock exams from previous year are irrelevant. Request the official PDF via Telegram to align with the current curriculum.
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // define urls and usernames
+        const telegramUrl = "https://t.me/mindmaster_robot";
+        const usernameRaw = "@mindmaster_robot";
+        
+        const copyLinkBtn = document.getElementById('copyTelegramLinkBtn');
+        const copyUsernameBtn = document.getElementById('copyUsernameOnlyBtn');
+        
+        async function copyToClipboard(text, buttonElement, successMsg = "Copied!") {
+            try {
+                await navigator.clipboard.writeText(text);
+                // feedback
+                const originalHtml = buttonElement.innerHTML;
+                buttonElement.innerHTML = `✅ ${successMsg}`;
+                buttonElement.style.backgroundColor = "#d4e9ff";
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalHtml;
+                    buttonElement.style.backgroundColor = "";
+                }, 1500);
+            } catch (err) {
+                // fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                const originalHtml = buttonElement.innerHTML;
+                buttonElement.innerHTML = `📋 ${successMsg}`;
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalHtml;
+                }, 1300);
+            }
+        }
+        
+        if (copyLinkBtn) {
+            copyLinkBtn.addEventListener('click', () => {
+                copyToClipboard(telegramUrl, copyLinkBtn, "Link copied!");
+            });
+        }
+        
+        if (copyUsernameBtn) {
+            copyUsernameBtn.addEventListener('click', () => {
+                copyToClipboard(usernameRaw, copyUsernameBtn, "Username copied");
+            });
+        }
+        
+        // optional: add small console free
+    })();
+</script>
+</body>
+</html>
